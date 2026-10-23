@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Mini Projects | Kiyo Tak — Guided Academic Projects</title>
+  <meta name="description" content="Explore guided mini-projects across Software, AI, Web Development, Mobile Apps, Electronics, and IoT. Complete with source code, documentation, and mentor support.">
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-left">
+        <a href="tel:9943587707" class="top-item"><i class="fa-solid fa-phone" style="color: var(--brand-blue-light);"></i> +91 9943587707</a>
+        <a href="mailto:kiyotakhr@gmail.com" class="top-item"><i class="fa-solid fa-envelope" style="color: var(--brand-gold);"></i> kiyotakhr@gmail.com</a>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://instagram.com/kiyo__tak" target="_blank" class="top-item"><i class="fa-brands fa-instagram"></i> @kiyo__tak</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <img src="../assets/images/logo.png" alt="Kiyo Tak Logo" class="logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Kiyo Tak</span>
+          <span class="brand-tagline">Learn · Build · Advance</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../about.html" class="nav-link">About</a></li>
+          <li><a href="../leadership.html" class="nav-link">Leadership</a></li>
+          <li><a href="../services.html" class="nav-link active">Services</a></li>
+          <li><a href="../projects.html" class="nav-link">Projects</a></li>
+          <li><a href="../internships.html" class="nav-link">Internships</a></li>
+          <li><a href="../careers.html" class="nav-link">Careers</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
+        <a href="../contact.html?service=Mini+Projects" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Request a Project</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Navigation"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> <span>/</span> <a href="../services.html">Services</a> <span>/</span> <span>Mini Projects</span>
+    </div>
+    <h1 class="page-hero-title">Student & Academic <span style="background: linear-gradient(135deg, #A855F7, #38BDF8); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Mini Projects</span></h1>
+    <p class="page-hero-subtitle">
+      Practical, industry-calibrated mini projects for college students and beginners. Complete with source code, setup walkthroughs, and viva preparation.
+    </p>
+  </div>
+
+  <!-- Mini Projects Grid Section -->
+  <section style="padding-top: 20px;">
+    <div class="section-container">
+      
+      <div class="section-header">
+        <span class="section-badge">Project Catalog</span>
+        <h2 class="section-title">Available Mini Project Blueprints</h2>
+        <p class="section-desc">Each mini project includes clean source code, architecture documentation, presentation slides, and 1-on-1 viva guidance.</p>
+      </div>
+
+      <div class="divisions-grid" style="margin-bottom: 60px;">
+        
+        <!-- Project 1: AI Chatbot -->
+        <div class="division-card">
+          <div class="division-icon" style="background: rgba(196, 181, 253, 0.15); color: #C4B5FD;"><i class="fa-solid fa-robot"></i></div>
+          <h3 class="division-title">AI Knowledge-Base Chatbot</h3>
+          <p class="division-desc">An intelligent AI assistant that parses custom PDF documents and answers user questions using Retrieval Augmented Generation (RAG).</p>
+          <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+            <p><strong>Technology:</strong> Python + LangChain + OpenAI/FastAPI</p>
+            <p><strong>Difficulty Level:</strong> Beginner / Intermediate</p>
+            <p><strong>Expected Outcome:</strong> Live conversational AI web interface</p>
+            <p style="color:var(--brand-gold);"><strong>What You Will Learn:</strong> Vector databases, prompt engineering, and REST API deployment.</p>
+          </div>
+          <a href="../contact.html?subject=Request+Project:+AI+Knowledge-Base+Chatbot" class="btn btn-gold" style="font-size:0.85rem; padding:8px; margin-top:auto;"><i class="fa-solid fa-download"></i> Request This Project</a>
+        </div>
+
+        <!-- Project 2: Smart IoT Hydroponics -->
+        <div class="division-card">
+          <div class="division-icon" style="background: rgba(234, 179, 8, 0.15); color: #EAB308;"><i class="fa-solid fa-seedling"></i></div>
+          <h3 class="division-title">Smart IoT Hydroponics Controller</h3>
+          <p class="division-desc">Automated sensor array measuring water pH, electrical conductivity, and temperature to regulate nutrient dosage pumps.</p>
+          <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+            <p><strong>Technology:</strong> ESP32 + Embedded C + MQTT + Blynk Dashboard</p>
+            <p><strong>Difficulty Level:</strong> Intermediate</p>
+            <p><strong>Expected Outcome:</strong> Working IoT breadboard/PCB prototype</p>
+            <p style="color:var(--brand-gold);"><strong>What You Will Learn:</strong> Microcontroller ADC calibration, relay switching, and wireless IoT cloud sync.</p>
+          </div>
+          <a href="../contact.html?subject=Request+Project:+Smart+IoT+Hydroponics" class="btn btn-gold" style="font-size:0.85rem; padding:8px; margin-top:auto;"><i class="fa-solid fa-download"></i> Request This Project</a>
+        </div>
+
+        <!-- Project 3: Full-Stack Placement Portal -->
+        <div class="division-card">
+          <div class="division-icon" style="background: rgba(56, 189, 248, 0.15); color: #38BDF8;"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3 class="division-title">College Placement Management Portal</h3>
+          <p class="division-desc">Role-based web portal for students to apply for campus drives and training officers to upload recruiter schedules.</p>
+          <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+            <p><strong>Technology:</strong> React.js + Node.js + MongoDB + JWT Auth</p>
+            <p><strong>Difficulty Level:</strong> Intermediate</p>
+            <p><strong>Expected Outcome:</strong> Live hosted multi-role web platform</p>
+            <p style="color:var(--brand-gold);"><strong>What You Will Learn:</strong> JWT authentication, CRUD databases, file uploads, and state management.</p>
+          </div>
+          <a href="../contact.html?subject=Request+Project:+College+Placement+Portal" class="btn btn-gold" style="font-size:0.85rem; padding:8px; margin-top:auto;"><i class="fa-solid fa-download"></i> Request This Project</a>
+        </div>
+
+        <!-- Project 4: Expense Tracker Mobile App -->
+        <div class="division-card">
+          <div class="division-icon" style="background: rgba(16, 185, 129, 0.15); color: #10B981;"><i class="fa-solid fa-wallet"></i></div>
+          <h3 class="division-title">Smart Budget & Expense Mobile App</h3>
+          <p class="division-desc">Mobile application with monthly category spending analytics, OCR receipt scanning, and budget threshold alerts.</p>
+          <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+            <p><strong>Technology:</strong> Flutter + SQLite + Google ML Kit OCR</p>
+            <p><strong>Difficulty Level:</strong> Beginner / Intermediate</p>
+            <p><strong>Expected Outcome:</strong> Installable Android APK & iOS build</p>
+            <p style="color:var(--brand-gold);"><strong>What You Will Learn:</strong> Flutter widgets, local database queries, and on-device machine learning.</p>
+          </div>
+          <a href="../contact.html?subject=Request+Project:+Smart+Budget+Mobile+App" class="btn btn-gold" style="font-size:0.85rem; padding:8px; margin-top:auto;"><i class="fa-solid fa-download"></i> Request This Project</a>
+        </div>
+
+        <!-- Project 5: SEO & Social Growth Case Study -->
+        <div class="division-card">
+          <div class="division-icon" style="background: rgba(244, 63, 94, 0.15); color: #FB7185;"><i class="fa-solid fa-chart-line"></i></div>
+          <h3 class="division-title">D2C Brand SEO & Growth Case Study</h3>
+          <p class="division-desc">Comprehensive digital marketing project featuring technical keyword research, competitor backlink analysis, and social content plan.</p>
+          <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+            <p><strong>Technology:</strong> Google Analytics + Semrush + Meta Business</p>
+            <p><strong>Difficulty Level:</strong> Beginner</p>
+            <p><strong>Expected Outcome:</strong> 30-Page comprehensive marketing audit report</p>
+            <p style="color:var(--brand-gold);"><strong>What You Will Learn:</strong> Technical SEO auditing, conversion funnels, and organic growth strategies.</p>
+          </div>
+          <a href="../contact.html?subject=Request+Project:+D2C+Brand+SEO+Growth" class="btn btn-gold" style="font-size:0.85rem; padding:8px; margin-top:auto;"><i class="fa-solid fa-download"></i> Request This Project</a>
+        </div>
+
+        <!-- Project 6: Autonomous Line Follower Robot -->
+        <div class="division-card">
+          <div class="division-icon" style="background: rgba(245, 158, 11, 0.15); color: #F59E0B;"><i class="fa-solid fa-robot"></i></div>
+          <h3 class="division-title">PID-Controlled Autonomous Robot</h3>
+          <p class="division-desc">Microcontroller robot with 5-channel IR sensor array and PID algorithmic steering for factory logistics simulations.</p>
+          <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+            <p><strong>Technology:</strong> Arduino Nano + L298N Driver + PID Algorithm</p>
+            <p><strong>Difficulty Level:</strong> Beginner / Intermediate</p>
+            <p><strong>Expected Outcome:</strong> Physical driving robotic vehicle</p>
+            <p style="color:var(--brand-gold);"><strong>What You Will Learn:</strong> Closed-loop PID tuning, motor PWM control, and sensor interrupt coding.</p>
+          </div>
+          <a href="../contact.html?subject=Request+Project:+Autonomous+Line+Follower+Robot" class="btn btn-gold" style="font-size:0.85rem; padding:8px; margin-top:auto;"><i class="fa-solid fa-download"></i> Request This Project</a>
+        </div>
+
+      </div>
+
+      <!-- Custom Project Guidance Box -->
+      <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(2,132,199,0.15)); border-radius: var(--radius-lg); border: 1px solid var(--bg-card-border);">
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px;">Need a Custom Topic for Your College Submission?</h2>
+        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 24px;">
+          Bring your own topic or syllabus requirements. Our senior mentors will customize the architecture, deliver verified source code, and prepare you for the viva round.
+        </p>
+        <a href="../contact.html?service=Mini+Projects" class="btn btn-gold" style="padding: 12px 36px; font-size: 1.05rem;">
+          <i class="fa-solid fa-paper-plane"></i> Request Custom Mini Project
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="../assets/images/logo.png" alt="Kiyo Tak" style="width: 44px; height: 44px; border-radius:50%;">
+          <span style="font-size: 1.4rem; font-weight: 800; color: #FFF;">Kiyo Tak</span>
+        </div>
+        <p>"Learn · Build · Advance"<br>Corporate Technology & Innovation Company.</p>
+      </div>
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../leadership.html">Leadership</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../internships.html">Internships</a></li>
+          <li><a href="../careers.html">Careers</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Top Divisions</h4>
+        <ul class="footer-links">
+          <li><a href="software-development.html">Software Development</a></li>
+          <li><a href="artificial-intelligence.html">AI & ML</a></li>
+          <li><a href="web-development.html">Web Development</a></li>
+          <li><a href="electronics.html">Electronics & IoT</a></li>
+          <li><a href="digital-marketing.html">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
+          <i class="fa-solid fa-envelope"></i> <a href="mailto:kiyotakhr@gmail.com" style="color:#FFF;">kiyotakhr@gmail.com</a><br>
+          <i class="fa-solid fa-phone"></i> +91 9943587707<br>
+          <i class="fa-brands fa-whatsapp"></i> 9943587707<br>
+          <i class="fa-brands fa-instagram"></i> @kiyo__tak
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Kiyo Tak. All Rights Reserved.</div>
+      <div>Official Email: <a href="mailto:kiyotakhr@gmail.com" style="color:var(--brand-gold);">kiyotakhr@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919943587707?text=Hi%20Kiyo%20Tak%20Team%2C%20I%20want%20to%20request%20a%20Mini%20Project." target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <div class="whatsapp-badge">1</div>
+  </a>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

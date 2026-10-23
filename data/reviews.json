@@ -1,0 +1,32 @@
+[
+  {
+    "id": "REV-1001",
+    "name": "Vigneshwaran K.",
+    "rating": 5,
+    "comment": "The IoT and Embedded firmware training at Kiyo Tak was phenomenal! Hand-on PCB design and ESP32 programming transformed my placement interview performance.",
+    "course": "IoT & Embedded Systems",
+    "status": "approved",
+    "source": "web",
+    "date": "2026-09-15"
+  },
+  {
+    "id": "REV-1002",
+    "name": "Sneha Ramanathan",
+    "rating": 5,
+    "comment": "Completed Japanese Language Training (N5) along with Full-Stack Development. The dual curriculum gave me an edge in landing my corporate placement in Tokyo tech firm!",
+    "course": "Japanese N5 & Full Stack",
+    "status": "approved",
+    "source": "google",
+    "date": "2026-09-28"
+  },
+  {
+    "id": "REV-1003",
+    "name": "Mohammed Danish",
+    "rating": 5,
+    "comment": "Kiyo Tak's placement mentorship and ATS resume builder helped me get shortlisted in top Tier-1 product companies within weeks. Highly recommended!",
+    "course": "Placement Guidance & Branding",
+    "status": "approved",
+    "source": "web",
+    "date": "2026-10-02"
+  }
+]

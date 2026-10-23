@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Development | Kiyo Tak — Scalable Enterprise Solutions</title>
+  <meta name="description" content="Build reliable, scalable, and modern software solutions with Kiyo Tak. Custom enterprise applications, database systems, APIs, and student software projects.">
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-left">
+        <a href="tel:9943587707" class="top-item"><i class="fa-solid fa-phone" style="color: var(--brand-blue-light);"></i> +91 9943587707</a>
+        <a href="mailto:kiyotakhr@gmail.com" class="top-item"><i class="fa-solid fa-envelope" style="color: var(--brand-gold);"></i> kiyotakhr@gmail.com</a>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://instagram.com/kiyo__tak" target="_blank" class="top-item"><i class="fa-brands fa-instagram"></i> @kiyo__tak</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <img src="../assets/images/logo.png" alt="Kiyo Tak Logo" class="logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Kiyo Tak</span>
+          <span class="brand-tagline">Learn · Build · Advance</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../about.html" class="nav-link">About</a></li>
+          <li><a href="../leadership.html" class="nav-link">Leadership</a></li>
+          <li><a href="../services.html" class="nav-link active">Services</a></li>
+          <li><a href="../projects.html" class="nav-link">Projects</a></li>
+          <li><a href="../internships.html" class="nav-link">Internships</a></li>
+          <li><a href="../careers.html" class="nav-link">Careers</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
+        <a href="../contact.html?service=Software+Development" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Get Started</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Navigation"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> <span>/</span> <a href="../services.html">Services</a> <span>/</span> <span>Software Development</span>
+    </div>
+    <h1 class="page-hero-title">Software <span style="background: linear-gradient(135deg, #38BDF8, #EAB308); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Development</span></h1>
+    <p class="page-hero-subtitle">
+      Build reliable, scalable, and modern software solutions with Kiyo Tak. Led by our Chief Information Officer, we deliver enterprise architectures, database systems, and full-stack software.
+    </p>
+  </div>
+
+  <!-- Service Details Section -->
+  <section style="padding-top: 20px;">
+    <div class="section-container">
+      
+      <!-- What We Provide -->
+      <div style="margin-bottom: 50px;">
+        <span class="section-badge">Service Capabilities</span>
+        <h2 style="font-size: 2rem; font-weight:800; margin-bottom: 24px;">What We Provide</h2>
+
+        <div class="service-feature-grid">
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-cubes"></i> Custom Software Development</h4>
+            <p>Bespoke software tailored to your exact business logic, workflows, and operational requirements.</p>
+          </div>
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-briefcase"></i> Business Applications</h4>
+            <p>ERP, CRM, and internal tooling that streamline organizational workflows and maximize productivity.</p>
+          </div>
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-globe"></i> Web-Based Software</h4>
+            <p>Robust cloud-native SaaS platforms accessible across all web browsers with zero installation.</p>
+          </div>
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-desktop"></i> Desktop Applications</h4>
+            <p>High-performance native and cross-platform desktop utilities with offline persistence and hardware interfacing.</p>
+          </div>
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-database"></i> Database-Driven Applications</h4>
+            <p>Optimized relational (PostgreSQL, MySQL) and NoSQL (MongoDB, Redis) data architectures with high throughput.</p>
+          </div>
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-plug"></i> API Development & Integration</h4>
+            <p>Secure REST and GraphQL APIs with OAuth2 authentication, webhooks, and rate-limiting infrastructure.</p>
+          </div>
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-screwdriver-wrench"></i> Software Maintenance</h4>
+            <p>24/7 bug fixes, dependency patches, cloud monitoring, and performance benchmarking support.</p>
+          </div>
+          <div class="service-feature-box">
+            <h4><i class="fa-solid fa-rotate"></i> Software Modernization</h4>
+            <p>Refactor and migrate legacy codebases to microservices, modern cloud containers, and scalable frameworks.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Website & Application Development Scope -->
+      <div style="background: var(--bg-card); border: 1px solid var(--bg-card-border); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 50px;">
+        <h3 style="font-size: 1.4rem; font-weight:800; color:var(--brand-gold); margin-bottom: 16px;"><i class="fa-solid fa-layer-group"></i> Full Application Development Spectrum</h3>
+        <p style="color:var(--text-secondary); margin-bottom: 20px;">Kiyo Tak empowers enterprises and startups to create:</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+          <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#10B981;"></i> Company & Business Portals</div>
+          <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#10B981;"></i> High-Converting E-Commerce Stores</div>
+          <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#10B981;"></i> Scalable Cloud SaaS Web Apps</div>
+          <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#10B981;"></i> Android Native & Kotlin Applications</div>
+          <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#10B981;"></i> iOS Swift Native Applications</div>
+          <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#10B981;"></i> Flutter Cross-Platform Apps</div>
+        </div>
+      </div>
+
+      <!-- Student / Beginner Opportunities -->
+      <div style="margin-bottom: 50px;">
+        <span class="section-badge">Academic & Skill Incubation</span>
+        <h2 style="font-size: 2rem; font-weight:800; margin-bottom: 20px;">Student & Beginner Opportunities</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+          <div style="background:var(--bg-card); border:1px solid var(--bg-card-border); padding:22px; border-radius:var(--radius-md);">
+            <h4 style="color:var(--brand-blue-light); margin-bottom:6px;"><i class="fa-solid fa-graduation-cap"></i> Academic & Final-Year Projects</h4>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Complete guidance on IEEE-aligned final-year engineering projects with source code, report writing, and viva coaching.</p>
+          </div>
+          <div style="background:var(--bg-card); border:1px solid var(--bg-card-border); padding:22px; border-radius:var(--radius-md);">
+            <h4 style="color:var(--brand-gold); margin-bottom:6px;"><i class="fa-solid fa-code-branch"></i> Guided Development & Repositories</h4>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">1-on-1 code reviews with senior architects to ensure clean modular design, unit testing, and GitHub portfolio presence.</p>
+          </div>
+          <div style="background:var(--bg-card); border:1px solid var(--bg-card-border); padding:22px; border-radius:var(--radius-md);">
+            <h4 style="color:#10B981; margin-bottom:6px;"><i class="fa-solid fa-laptop-code"></i> Internship Project Immersion</h4>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Real-world industry project assignments with verifiable certificates of completion to accelerate placement hiring.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How It Works (7-Step Process) -->
+      <div style="background: var(--bg-card); border: 1px solid var(--bg-card-border); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 50px;">
+        <h3 style="font-size: 1.4rem; font-weight:800; text-align:center; margin-bottom: 24px;"><i class="fa-solid fa-diagram-project"></i> How It Works (Development Process)</h3>
+        
+        <div class="process-steps">
+          <div class="process-step-item">
+            <div class="process-step-num">1</div>
+            <div class="process-step-title">Discuss Requirements</div>
+          </div>
+          <div class="process-step-item">
+            <div class="process-step-num">2</div>
+            <div class="process-step-title">Plan the Project</div>
+          </div>
+          <div class="process-step-item">
+            <div class="process-step-num">3</div>
+            <div class="process-step-title">Design Solution</div>
+          </div>
+          <div class="process-step-item">
+            <div class="process-step-num">4</div>
+            <div class="process-step-title">Develop</div>
+          </div>
+          <div class="process-step-item">
+            <div class="process-step-num">5</div>
+            <div class="process-step-title">Test & Validate</div>
+          </div>
+          <div class="process-step-item">
+            <div class="process-step-num">6</div>
+            <div class="process-step-title">Deploy</div>
+          </div>
+          <div class="process-step-item">
+            <div class="process-step-num">7</div>
+            <div class="process-step-title">Provide Support</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Callout CTA -->
+      <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(2,132,199,0.2), rgba(234,179,8,0.15)); border-radius: var(--radius-lg); border: 1px solid var(--bg-card-border);">
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px;">Start Your Software Project with Kiyo Tak</h2>
+        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 24px;">
+          Contact our software division directly to discuss technical specifications, architecture feasibility, or project timelines.
+        </p>
+        <a href="../contact.html?service=Software+Development" class="btn btn-gold" style="padding: 12px 36px; font-size: 1.05rem;">
+          <i class="fa-solid fa-paper-plane"></i> Start Your Software Project
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="../assets/images/logo.png" alt="Kiyo Tak" style="width: 44px; height: 44px; border-radius:50%;">
+          <span style="font-size: 1.4rem; font-weight: 800; color: #FFF;">Kiyo Tak</span>
+        </div>
+        <p>"Learn · Build · Advance"<br>Corporate Technology & Innovation Company.</p>
+      </div>
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../leadership.html">Leadership</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../internships.html">Internships</a></li>
+          <li><a href="../careers.html">Careers</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Top Divisions</h4>
+        <ul class="footer-links">
+          <li><a href="software-development.html">Software Development</a></li>
+          <li><a href="artificial-intelligence.html">AI & ML</a></li>
+          <li><a href="web-development.html">Web Development</a></li>
+          <li><a href="electronics.html">Electronics & IoT</a></li>
+          <li><a href="digital-marketing.html">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
+          <i class="fa-solid fa-envelope"></i> <a href="mailto:kiyotakhr@gmail.com" style="color:#FFF;">kiyotakhr@gmail.com</a><br>
+          <i class="fa-solid fa-phone"></i> +91 9943587707<br>
+          <i class="fa-brands fa-whatsapp"></i> 9943587707<br>
+          <i class="fa-brands fa-instagram"></i> @kiyo__tak
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Kiyo Tak. All Rights Reserved.</div>
+      <div>Official Email: <a href="mailto:kiyotakhr@gmail.com" style="color:var(--brand-gold);">kiyotakhr@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919943587707?text=Hi%20Kiyo%20Tak%20Team%2C%20I%20have%20a%20Software%20Development%20enquiry." target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <div class="whatsapp-badge">1</div>
+  </a>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

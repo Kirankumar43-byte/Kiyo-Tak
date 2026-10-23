@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal & Dashboard | Kiyo Tak</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- PDF & Canvas rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    /* ==========================================================================
+       STUDENT DASHBOARD - PROFESSIONAL & ATTRACTIVE COLOR SYSTEM
+       ========================================================================== */
+    .dash-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 1024px) {
+      .dash-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 580px) {
+      .dash-metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dash-metric-card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(10, 16, 31, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 22px 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+    [data-theme="light"] .dash-metric-card {
+      background: #FFFFFF;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+    .dash-metric-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Metric Card 1: Electric Cyan */
+    .dash-metric-card.cyan {
+      border-color: rgba(56, 189, 248, 0.35);
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.25);
+    }
+    .dash-metric-card.cyan::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #0284c7, #38bdf8);
+    }
+    .dash-metric-card.cyan .metric-icon {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    /* Metric Card 2: Cyber Emerald */
+    .dash-metric-card.emerald {
+      border-color: rgba(16, 185, 129, 0.35);
+      box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.25);
+    }
+    .dash-metric-card.emerald::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #059669, #10b981);
+    }
+    .dash-metric-card.emerald .metric-icon {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    /* Metric Card 3: Royal Purple */
+    .dash-metric-card.purple {
+      border-color: rgba(192, 132, 252, 0.35);
+      box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.25);
+    }
+    .dash-metric-card.purple::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #7c3aed, #c084fc);
+    }
+    .dash-metric-card.purple .metric-icon {
+      background: rgba(192, 132, 252, 0.14);
+      color: #c084fc;
+      border: 1px solid rgba(192, 132, 252, 0.35);
+    }
+
+    /* Metric Card 4: Radiant Amber Gold */
+    .dash-metric-card.gold {
+      border-color: rgba(234, 179, 8, 0.35);
+      box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.25);
+    }
+    .dash-metric-card.gold::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #d97706, #fbbf24);
+    }
+    .dash-metric-card.gold .metric-icon {
+      background: rgba(234, 179, 8, 0.14);
+      color: #fbbf24;
+      border: 1px solid rgba(234, 179, 8, 0.35);
+    }
+
+    .metric-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .metric-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    .metric-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .metric-value {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .metric-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* Certificate Cards */
+    .cert-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .cert-card {
+      background: linear-gradient(155deg, rgba(17, 24, 39, 0.95), rgba(11, 16, 32, 0.98));
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+    [data-theme="light"] .cert-card {
+      background: #FFFFFF;
+      border-color: rgba(2, 132, 199, 0.2);
+    }
+    .cert-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--brand-gold);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 20px rgba(234, 179, 8, 0.25);
+    }
+    .cert-preview-thumb {
+      height: 200px;
+      background: #090e1a;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cert-preview-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.95;
+      transition: transform 0.4s ease;
+    }
+    .cert-card:hover .cert-preview-thumb img {
+      transform: scale(1.04);
+    }
+    .cert-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .cert-id-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--brand-blue-light);
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cert-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .cert-details-row {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .cert-actions {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      gap: 10px;
+    }
+    [data-theme="light"] .cert-actions {
+      border-top-color: rgba(0, 0, 0, 0.08);
+    }
+    .locked-badge {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #f87171;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .unlocked-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #34d399;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Distinct Vivid Jewel Color Services in Dashboard */
+    .dash-service-box {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .dash-service-box:hover {
+      transform: translateY(-4px);
+    }
+    .dash-service-box.srv-blue:hover { border-color: #38bdf8; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3); }
+    .dash-service-box.srv-emerald:hover { border-color: #34d399; box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
+    .dash-service-box.srv-purple:hover { border-color: #c084fc; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3); }
+    .dash-service-box.srv-rose:hover { border-color: #fb7185; box-shadow: 0 10px 25px rgba(225, 29, 72, 0.3); }
+    .dash-service-box.srv-amber:hover { border-color: #fbbf24; box-shadow: 0 10px 25px rgba(217, 119, 6, 0.3); }
+    .dash-service-box.srv-indigo:hover { border-color: #818cf8; box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3); }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-left">
+        <a href="tel:9943587707" class="top-item"><i class="fa-solid fa-phone" style="color: var(--brand-blue-light);"></i> +91 9943587707</a>
+        <a href="mailto:kiyotakhtofficial@gmail.com" class="top-item"><i class="fa-solid fa-envelope" style="color: var(--brand-gold);"></i> kiyotakhtofficial@gmail.com</a>
+      </div>
+      <div class="top-bar-right">
+        <span style="color:var(--brand-gold); font-weight:700;"><i class="fa-solid fa-id-badge"></i> Student Portal</span>
+        <span style="color:var(--text-muted);">|</span>
+        <a href="admin-login.html" class="top-item" style="color:var(--brand-lavender);"><i class="fa-solid fa-terminal"></i> Admin Console</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Kiyo Tak Logo" class="logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Kiyo Tak</span>
+          <span class="brand-tagline">Learn · Build · Advance</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#services" class="nav-link">Services</a></li>
+          <li><a href="index.html#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
+        <button class="btn btn-outline" onclick="openProfileSettingsModal()"><i class="fa-solid fa-gear"></i> Settings</button>
+        <button class="btn btn-outline" style="color:#ef4444;" onclick="handleUserLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Navigation"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Body -->
+  <div style="max-width: 1280px; margin: 30px auto; padding: 0 24px;">
+    
+    <!-- Welcome Header Banner -->
+    <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(234, 179, 8, 0.12) 100%); border: 1px solid var(--bg-card-border); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 36px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+      <div>
+        <div class="section-badge" style="margin-bottom:8px;">Authorized Student Space</div>
+        <h1 style="font-size: 2.2rem; font-weight:900; margin:0 0 6px 0;">Welcome, <span id="dashStudentName" style="background:linear-gradient(135deg,#38bdf8,#eab308); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Scholar</span>!</h1>
+        <p style="color:var(--text-secondary); margin:0; font-size:0.95rem;">
+          Email Account: <strong id="dashStudentEmail" style="color:var(--brand-blue-light); font-family:monospace;">loading...</strong>
+        </p>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <a href="index.html#services" class="btn btn-primary"><i class="fa-solid fa-cubes"></i> Choose Service Track</a>
+        <a href="index.html#mentorship" class="btn btn-gold"><i class="fa-solid fa-paper-plane"></i> Book Mentorship</a>
+      </div>
+    </div>
+
+    <!-- 4 VIBRANT EXECUTIVE METRIC CARDS (Professional Distinct Multi-Color Scheme) -->
+    <div class="dash-metrics-grid">
+      <!-- 1. Electric Cyan Metric: Certificates -->
+      <div class="dash-metric-card cyan">
+        <div class="metric-top">
+          <div class="metric-icon"><i class="fa-solid fa-award"></i></div>
+          <span class="metric-tag">PASSPORTS</span>
+        </div>
+        <div class="metric-value" id="statCertCount">0</div>
+        <div class="metric-label">Verified Internship Credentials</div>
+      </div>
+
+      <!-- 2. Cyber Emerald Metric: Verification Status -->
+      <div class="dash-metric-card emerald">
+        <div class="metric-top">
+          <div class="metric-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <span class="metric-tag">SECURITY</span>
+        </div>
+        <div class="metric-value" style="font-size:1.6rem; color:#34d399;"><i class="fa-solid fa-circle-check"></i> 100%</div>
+        <div class="metric-label">Cryptographically Tamper-Proof</div>
+      </div>
+
+      <!-- 3. Royal Purple Metric: Enrolled Tracks -->
+      <div class="dash-metric-card purple">
+        <div class="metric-top">
+          <div class="metric-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <span class="metric-tag">CURRICULUM</span>
+        </div>
+        <div class="metric-value" style="color:#c084fc;">6 Tracks</div>
+        <div class="metric-label">Engineering & Language Programs</div>
+      </div>
+
+      <!-- 4. Radiant Amber Metric: Placement & Mentorship -->
+      <div class="dash-metric-card gold">
+        <div class="metric-top">
+          <div class="metric-icon"><i class="fa-solid fa-user-graduate"></i></div>
+          <span class="metric-tag">CAREER</span>
+        </div>
+        <div class="metric-value" style="color:#fbbf24;">Active</div>
+        <div class="metric-label">1-on-1 Mentor Guidance Access</div>
+      </div>
+    </div>
+
+    <!-- MAIN FEATURE: "My Certificates" -->
+    <div style="margin-bottom: 50px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px; flex-wrap:wrap; gap:12px;">
+        <div>
+          <h2 style="font-size: 1.6rem; font-weight:800; display:flex; align-items:center; gap:10px;">
+            <i class="fa-solid fa-award" style="color:var(--brand-gold);"></i> My Certificates
+          </h2>
+          <p style="font-size: 0.9rem; color:var(--text-secondary); margin:0;">
+            Certificates issued by Kiyo Tak matching your registered email address appear here automatically.
+          </p>
+        </div>
+        <button onclick="fetchStudentCertificates()" class="btn btn-outline" style="font-size:0.85rem; padding:6px 14px;">
+          <i class="fa-solid fa-arrows-rotate"></i> Refresh My Certificates
+        </button>
+      </div>
+
+      <!-- Certificate Cards Grid -->
+      <div id="studentCertificatesContainer" class="cert-card-grid">
+        <div style="grid-column: 1 / -1; text-align:center; padding:50px; background:var(--bg-card); border-radius:var(--radius-md); border:1px solid var(--bg-card-border); color:var(--text-muted);">
+          <i class="fa-solid fa-circle-notch fa-spin" style="font-size:2rem; margin-bottom:12px; color:var(--brand-blue-light);"></i>
+          <div>Checking certificate database for your email...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 Specialized Colorful Service Tracks in Dashboard -->
+    <div style="margin-bottom: 50px;">
+      <h2 style="font-size: 1.4rem; font-weight:800; margin-bottom: 16px; color:var(--brand-gold);">
+        <i class="fa-solid fa-layer-group"></i> Specialized Engineering & Career Tracks
+      </h2>
+      <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        
+        <!-- Track 1: Software -->
+        <div class="dash-service-box srv-blue" onclick="window.location.href='services/software-development.html'">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div class="service-icon-box" style="background:rgba(56,189,248,0.15); color:#38bdf8; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#38bdf8; font-weight:700;">TRACK 01</span>
+          </div>
+          <h3 class="service-title" style="font-size:1.15rem;">Software Development</h3>
+          <p class="service-desc" style="font-size:0.84rem;">Production-ready web applications, Next.js microservices, mobile apps, and custom APIs.</p>
+          <span style="color:#38bdf8; font-weight:700; font-size:0.85rem; margin-top:12px;">View Curriculum & Projects →</span>
+        </div>
+
+        <!-- Track 2: Hardware -->
+        <div class="dash-service-box srv-emerald" onclick="window.location.href='services/electronics.html'">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div class="service-icon-box" style="background:rgba(16,185,129,0.15); color:#34d399; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#34d399; font-weight:700;">TRACK 02</span>
+          </div>
+          <h3 class="service-title" style="font-size:1.15rem;">Hardware Engineering</h3>
+          <p class="service-desc" style="font-size:0.84rem;">IoT prototype engineering, schematic capture, multi-layer PCB fabrication, and firmware.</p>
+          <span style="color:#34d399; font-weight:700; font-size:0.85rem; margin-top:12px;">View Lab Curriculum →</span>
+        </div>
+
+        <!-- Track 3: Japanese -->
+        <div class="dash-service-box srv-purple" onclick="window.location.href='services/japanese.html'">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div class="service-icon-box" style="background:rgba(192,132,252,0.15); color:#c084fc; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+              <i class="fa-solid fa-language"></i>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#c084fc; font-weight:700;">TRACK 03</span>
+          </div>
+          <h3 class="service-title" style="font-size:1.15rem;">Japanese (N5–N3)</h3>
+          <p class="service-desc" style="font-size:0.84rem;">Certified JLPT language immersion preparing developers for high-impact careers in Tokyo, Japan.</p>
+          <span style="color:#c084fc; font-weight:700; font-size:0.85rem; margin-top:12px;">View JLPT Modules →</span>
+        </div>
+
+        <!-- Track 4: Digital Branding -->
+        <div class="dash-service-box srv-rose" onclick="window.location.href='services/branding.html'">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div class="service-icon-box" style="background:rgba(251,113,133,0.15); color:#fb7185; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+              <i class="fa-solid fa-address-card"></i>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#fb7185; font-weight:700;">TRACK 04</span>
+          </div>
+          <h3 class="service-title" style="font-size:1.15rem;">Digital Branding & ATS</h3>
+          <p class="service-desc" style="font-size:0.84rem;">100% ATS-compliant technical resume engineering, LinkedIn SEO optimization, and GitHub polish.</p>
+          <span style="color:#fb7185; font-weight:700; font-size:0.85rem; margin-top:12px;">Optimize Profile →</span>
+        </div>
+
+        <!-- Track 5: Placement Guidance -->
+        <div class="dash-service-box srv-amber" onclick="window.location.href='services/placement.html'">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div class="service-icon-box" style="background:rgba(245,158,11,0.15); color:#fbbf24; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#fbbf24; font-weight:700;">TRACK 05</span>
+          </div>
+          <h3 class="service-title" style="font-size:1.15rem;">Placement & Mock Drills</h3>
+          <p class="service-desc" style="font-size:0.84rem;">1-on-1 technical mock interviews, Data Structures & Algorithms coding drills, and MNC referrals.</p>
+          <span style="color:#fbbf24; font-weight:700; font-size:0.85rem; margin-top:12px;">Schedule Mock Session →</span>
+        </div>
+
+        <!-- Track 6: Verified Internships -->
+        <div class="dash-service-box srv-indigo" onclick="window.location.href='internships.html'">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div class="service-icon-box" style="background:rgba(99,102,241,0.15); color:#818cf8; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#818cf8; font-weight:700;">TRACK 06</span>
+          </div>
+          <h3 class="service-title" style="font-size:1.15rem;">Verified Internships</h3>
+          <p class="service-desc" style="font-size:0.84rem;">Real industry client projects, mentorship letter of recommendation, and verified certificate credentials.</p>
+          <span style="color:#818cf8; font-weight:700; font-size:0.85rem; margin-top:12px;">View Cohort Openings →</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Settings Modal (Language, Theme, Profile Edit, Logout) -->
+  <div id="studentSettingsModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeStudentSettingsModal()"><i class="fa-solid fa-xmark"></i></button>
+      <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:20px; color:var(--brand-gold);">
+        <i class="fa-solid fa-gear"></i> Student Account Settings
+      </h3>
+
+      <form onsubmit="handleSaveStudentProfile(event)">
+        <div class="form-group" style="margin-bottom:14px;">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="setStudentName" class="form-control" required>
+        </div>
+        <div class="form-group" style="margin-bottom:14px;">
+          <label class="form-label">Registered Email (Read-Only ID)</label>
+          <input type="email" id="setStudentEmail" class="form-control" readonly disabled style="opacity:0.7;">
+        </div>
+        <div class="form-group" style="margin-bottom:14px;">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" id="setStudentPhone" class="form-control" placeholder="+91 9943587707">
+        </div>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label class="form-label">Location / City</label>
+          <input type="text" id="setStudentLocation" class="form-control" placeholder="e.g. Chennai, India">
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; margin-bottom:20px;">
+          <div class="form-group" style="margin-bottom:14px;">
+            <label class="form-label">Language</label>
+            <select id="setStudentLang" class="form-control" onchange="setDashboardLanguage(this.value)">
+              <option value="en">English (US)</option>
+              <option value="ja">Japanese (日本語)</option>
+              <option value="ta">Tamil (தமிழ்)</option>
+              <option value="hi">Hindi (हिन्दी)</option>
+            </select>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="form-label">Site Theme</span>
+            <button type="button" class="btn btn-outline" style="padding:6px 16px;" onclick="toggleTheme()">
+              <i class="fa-solid fa-circle-half-stroke"></i> Toggle Dark / Light
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+          <button type="button" class="btn btn-outline" style="color:#ef4444;" onclick="handleUserLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          <button type="submit" class="btn btn-gold"><i class="fa-solid fa-check"></i> Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hidden rendering canvas for student PNG/PDF export -->
+  <canvas id="studentHiddenCanvas" width="1200" height="850" style="display:none;"></canvas>
+
+  <script>
+    // Current student user
+    let currentUser = JSON.parse(localStorage.getItem('kiyo_user'));
+
+    if (!currentUser) {
+      window.location.href = 'index.html#login';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (currentUser) {
+        document.getElementById('dashStudentName').innerText = currentUser.name || 'Scholar';
+        document.getElementById('dashStudentEmail').innerText = currentUser.email;
+        fetchStudentCertificates();
+      }
+    });
+
+    function fetchStudentCertificates() {
+      if (!currentUser || !currentUser.email) return;
+
+      const container = document.getElementById('studentCertificatesContainer');
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align:center; padding:40px; color:var(--text-muted);">
+          <i class="fa-solid fa-circle-notch fa-spin" style="font-size:1.8rem; margin-bottom:10px; color:var(--brand-blue-light);"></i>
+          <div>Fetching certificates for ${currentUser.email}...</div>
+        </div>
+      `;
+
+      fetch(`/api/student/certificates?email=${encodeURIComponent(currentUser.email)}`)
+        .then(res => res.json())
+        .then(data => {
+          const statEl = document.getElementById('statCertCount');
+          if (data.success && data.certificates.length > 0) {
+            if (statEl) statEl.textContent = data.certificates.length;
+            renderStudentCertificates(data.certificates);
+          } else {
+            if (statEl) statEl.textContent = "0";
+            container.innerHTML = `
+              <div style="grid-column: 1 / -1; text-align:center; padding:50px; background:var(--bg-card); border-radius:var(--radius-md); border:1px solid var(--bg-card-border);">
+                <i class="fa-solid fa-file-circle-question" style="font-size:3rem; color:var(--brand-lavender); margin-bottom:14px;"></i>
+                <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:6px;">No Certificates Issued Yet</h3>
+                <p style="color:var(--text-secondary); max-width:540px; margin:0 auto 18px; font-size:0.9rem;">
+                  Once Kiyo Tak administrators generate your internship or course certificate for <strong>${currentUser.email}</strong>, it will appear here immediately for instant download.
+                </p>
+                <a href="index.html#mentorship" class="btn btn-outline" style="font-size:0.85rem;">Enquire on WhatsApp</a>
+              </div>
+            `;
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          const statEl = document.getElementById('statCertCount');
+          if (statEl) statEl.textContent = "0";
+          container.innerHTML = `<div style="grid-column: 1 / -1; text-align:center; padding:30px; color:#ef4444;">Failed to fetch certificates from server.</div>`;
+        });
+    }
+
+    function renderStudentCertificates(certs) {
+      const container = document.getElementById('studentCertificatesContainer');
+      container.innerHTML = '';
+
+      certs.forEach(c => {
+        const isLocked = c.paymentRequired && !c.isPaid;
+
+        const card = document.createElement('div');
+        card.className = 'cert-card';
+
+        card.innerHTML = `
+          <div class="cert-preview-thumb">
+            <img src="assets/images/certificate-template.png" alt="Certificate Preview">
+            <div style="position:absolute; inset:0; background:rgba(7, 11, 20, 0.45); display:flex; align-items:center; justify-content:center;">
+              <div style="text-align:center; color:#FFF;">
+                <i class="fa-solid fa-graduation-cap" style="font-size:2.2rem; color:var(--brand-gold); margin-bottom:6px;"></i>
+                <div style="font-weight:800; font-size:0.95rem; letter-spacing:0.5px;">KIYO TAK CERTIFICATE</div>
+              </div>
+            </div>
+            ${isLocked ? `
+              <div style="position:absolute; top:12px; right:12px;" class="locked-badge">
+                <i class="fa-solid fa-lock"></i> Verification Fee Due (₹${c.paymentAmount})
+              </div>
+            ` : `
+              <div style="position:absolute; top:12px; right:12px; background:rgba(16, 185, 129, 0.2); border:1px solid #10B981; color:#34D399; padding:3px 10px; border-radius:99px; font-size:0.75rem; font-weight:800;">
+                <i class="fa-solid fa-circle-check"></i> VERIFIED & UNLOCKED
+              </div>
+            `}
+          </div>
+
+          <div class="cert-body">
+            <div class="cert-id-tag">ID: ${escapeHtml(c.id)}</div>
+            <h3 class="cert-title">${escapeHtml(c.course)}</h3>
+
+            <div class="cert-details-row">
+              <span>Student:</span>
+              <strong style="color:var(--text-primary);">${escapeHtml(c.name)}</strong>
+            </div>
+            <div class="cert-details-row">
+              <span>Duration:</span>
+              <span>${escapeHtml(c.startDate)} — ${escapeHtml(c.endDate)}</span>
+            </div>
+            <div class="cert-details-row">
+              <span>Performance Grade:</span>
+              <strong style="color:var(--brand-gold);">${escapeHtml(c.grade)}</strong>
+            </div>
+            <div class="cert-details-row">
+              <span>Issue Date:</span>
+              <span>${escapeHtml(c.issueDate)}</span>
+            </div>
+
+            <div class="cert-actions">
+              ${isLocked ? `
+                <a href="${c.paymentLink}" target="_blank" class="btn btn-gold" style="width:100%; font-size:0.85rem; padding:9px;">
+                  <i class="fa-brands fa-whatsapp"></i> Pay ₹${c.paymentAmount} to Unlock & Download
+                </a>
+              ` : `
+                <button onclick="downloadStudentCertPng('${c.id}')" class="btn btn-primary" style="flex:1; font-size:0.85rem; padding:8px;">
+                  <i class="fa-solid fa-image"></i> Download PNG
+                </button>
+                <button onclick="downloadStudentCertPdf('${c.id}')" class="btn btn-outline" style="flex:1; font-size:0.85rem; padding:8px;">
+                  <i class="fa-solid fa-file-pdf"></i> Download PDF
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Canvas generation helper for download
+    async function generateStudentCertCanvas(certId) {
+      const res = await fetch(`/api/certificates/verify/${certId}`);
+      const data = await res.json();
+      if (!data.success) {
+        alert('Certificate not found');
+        return null;
+      }
+      const cert = data.certificate;
+
+      const templateRes = await fetch('/api/admin/template-config');
+      const templateData = await templateRes.json();
+      const p = (templateData.success && templateData.config.positions) ? templateData.config.positions : {
+        name: { y: 46, fontSize: 44, color: '#0d1b2a' },
+        course: { y: 62.5, fontSize: 17, color: '#2b2d42' },
+        date: { y: 66, fontSize: 15, color: '#4a4e69' },
+        certId: { x: 91, y: 94 }
+      };
+
+      const canvas = document.getElementById('studentHiddenCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 1200;
+      canvas.height = 850;
+
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      
+      return new Promise((resolve) => {
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, 1200, 850);
+
+          ctx.textAlign = "center";
+          // 1. Name
+          ctx.font = `bold ${p.name.fontSize || 44}px 'Playfair Display', serif`;
+          ctx.fillStyle = p.name.color || '#0d1b2a';
+          ctx.fillText(cert.name, 600, 850 * (p.name.y / 100));
+
+          // 2. Course
+          ctx.font = `600 ${p.course.fontSize || 17}px 'Inter', sans-serif`;
+          ctx.fillStyle = p.course.color || '#2b2d42';
+          ctx.fillText(`in recognition of their successful completion of the ${cert.course} Internship Programme`, 600, 850 * (p.course.y / 100));
+
+          // 3. Date & Grade
+          ctx.font = `normal ${p.date.fontSize || 15}px 'Inter', sans-serif`;
+          ctx.fillStyle = p.date.color || '#4a4e69';
+          ctx.fillText(`Conducted from ${cert.startDate} to ${cert.endDate} | Performance Grade: ${cert.grade}`, 600, 850 * (p.date.y / 100));
+
+          // 4. Cert ID
+          ctx.textAlign = "left";
+          ctx.font = `bold 13px 'JetBrains Mono', monospace`;
+          ctx.fillStyle = "#1e3a8a";
+          ctx.fillText(`ID: ${cert.id}`, 1200 * ((p.certId.x || 91) / 100), 850 * ((p.certId.y || 94) / 100));
+
+          resolve({ canvas, cert });
+        };
+        img.onerror = () => {
+          alert('Template image failed to load');
+          resolve(null);
+        };
+        img.src = 'assets/images/certificate-template.png';
+      });
+    }
+
+    async function downloadStudentCertPng(certId) {
+      const result = await generateStudentCertCanvas(certId);
+      if (!result) return;
+      const { canvas, cert } = result;
+
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${cert.id}_${cert.name.replace(/\s+/g, '_')}.png`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }, 'image/png');
+    }
+
+    async function downloadStudentCertPdf(certId) {
+      const result = await generateStudentCertCanvas(certId);
+      if (!result) return;
+      const { canvas, cert } = result;
+
+      canvas.toBlob((blob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => {
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1200, 850] });
+          pdf.addImage(reader.result, 'PNG', 0, 0, 1200, 850);
+          pdf.save(`${cert.id}_${cert.name.replace(/\s+/g, '_')}.pdf`);
+        };
+      }, 'image/png');
+    }
+
+    function openProfileSettingsModal() {
+      if (!currentUser) return;
+      document.getElementById('setStudentName').value = currentUser.name || '';
+      document.getElementById('setStudentEmail').value = currentUser.email || '';
+      document.getElementById('setStudentPhone').value = currentUser.phone || '';
+      document.getElementById('setStudentLocation').value = currentUser.location || '';
+      document.getElementById('studentSettingsModal').classList.add('active');
+    }
+
+    function closeStudentSettingsModal() {
+      document.getElementById('studentSettingsModal').classList.remove('active');
+    }
+
+    function handleSaveStudentProfile(e) {
+      e.preventDefault();
+      const name = document.getElementById('setStudentName').value.trim();
+      const phone = document.getElementById('setStudentPhone').value.trim();
+      const location = document.getElementById('setStudentLocation').value.trim();
+
+      fetch('/api/auth/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: currentUser.email, name, phone, location })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          currentUser = data.user;
+          localStorage.setItem('kiyo_user', JSON.stringify(currentUser));
+          document.getElementById('dashStudentName').innerText = currentUser.name;
+          closeStudentSettingsModal();
+          alert('Profile updated successfully!');
+        }
+      });
+    }
+
+    function handleUserLogout() {
+      localStorage.removeItem('kiyo_user');
+      window.location.href = 'index.html';
+    }
+
+    function setDashboardLanguage(lang) {
+      localStorage.setItem('kiyo_lang', lang);
+      alert(`Interface language set to: ${lang.toUpperCase()}`);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('kiyo_theme', next);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>

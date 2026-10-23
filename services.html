@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services & Divisions | Kiyo Tak</title>
+  <meta name="description" content="Explore Kiyo Tak's 10 specialized technology divisions: Software Development, AI & ML, Web, Mobile Apps, Digital Marketing, Electronics, Internships, Mini Projects, Consulting, and Branding.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-left">
+        <a href="tel:9943587707" class="top-item"><i class="fa-solid fa-phone" style="color: var(--brand-blue-light);"></i> +91 9943587707</a>
+        <a href="mailto:kiyotakhr@gmail.com" class="top-item"><i class="fa-solid fa-envelope" style="color: var(--brand-gold);"></i> kiyotakhr@gmail.com</a>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://instagram.com/kiyo__tak" target="_blank" class="top-item"><i class="fa-brands fa-instagram"></i> @kiyo__tak</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Kiyo Tak Logo" class="logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Kiyo Tak</span>
+          <span class="brand-tagline">Learn · Build · Advance</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="internships.html" class="nav-link">Internships</a></li>
+          <li><a href="careers.html" class="nav-link">Careers</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
+        <a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Get Started</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Navigation"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span>/</span> <span>Services</span>
+    </div>
+    <h1 class="page-hero-title">Corporate <span style="background: linear-gradient(135deg, #38BDF8, #EAB308); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Technology Services</span></h1>
+    <p class="page-hero-subtitle">
+      Discover our dedicated technology divisions. Click any division below to view its full dedicated page with technical scope, project capabilities, student pathways, and direct inquiry forms.
+    </p>
+  </div>
+
+  <!-- Services Grid -->
+  <section style="padding-top: 20px;">
+    <div class="section-container">
+      <div class="divisions-grid">
+        
+        <!-- 1. Software Development -->
+        <a href="services/software-development.html" class="division-card">
+          <div class="division-icon" style="background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <h3 class="division-title">Software Development</h3>
+          <p class="division-desc">Custom enterprise software, business applications, desktop tools, database systems, secure REST/GraphQL APIs, and legacy system modernization.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 2. AI & ML -->
+        <a href="services/artificial-intelligence.html" class="division-card">
+          <div class="division-icon" style="background: rgba(196, 181, 253, 0.15); color: #C4B5FD; border: 1px solid rgba(196, 181, 253, 0.3);">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <h3 class="division-title">Artificial Intelligence & ML</h3>
+          <p class="division-desc">AI application development, machine learning predictive models, intelligent chatbots, computer vision, data analysis, and student AI projects.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 3. Web Development -->
+        <a href="services/web-development.html" class="division-card">
+          <div class="division-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284C7; border: 1px solid rgba(2, 132, 199, 0.3);">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <h3 class="division-title">Web Development</h3>
+          <p class="division-desc">Corporate websites, high-converting landing pages, e-commerce stores, admin dashboards, responsive web apps, and maintenance.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 4. Mobile App Development -->
+        <a href="services/mobile-app-development.html" class="division-card">
+          <div class="division-icon" style="background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.3);">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+          <h3 class="division-title">Mobile App Development</h3>
+          <p class="division-desc">Native Android, iOS, and Flutter cross-platform applications featuring modern UI/UX design, real-time database sync, and Play Store publishing.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 5. Digital Marketing -->
+        <a href="services/digital-marketing.html" class="division-card">
+          <div class="division-icon" style="background: rgba(244, 63, 94, 0.15); color: #FB7185; border: 1px solid rgba(244, 63, 94, 0.3);">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <h3 class="division-title">Digital Marketing</h3>
+          <p class="division-desc">Social media marketing (Instagram, LinkedIn, Facebook), search engine optimization (SEO), lead generation, online advertising, and brand strategy.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 6. Electronics & Hardware -->
+        <a href="services/electronics.html" class="division-card">
+          <div class="division-icon" style="background: rgba(234, 179, 8, 0.15); color: #EAB308; border: 1px solid rgba(234, 179, 8, 0.3);">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <h3 class="division-title">Electronics & Hardware</h3>
+          <p class="division-desc">IoT sensor projects, embedded systems, PCB schematic capture, ESP32/STM32/Arduino development, Raspberry Pi automation, and robotics.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 7. Training & Internship -->
+        <a href="internships.html" class="division-card">
+          <div class="division-icon" style="background: rgba(14, 165, 233, 0.15); color: #0EA5E9; border: 1px solid rgba(14, 165, 233, 0.3);">
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+          <h3 class="division-title">Training & Internship</h3>
+          <p class="division-desc">Industry-oriented practical internship cohorts across Software, AI/ML, Marketing, and Electronics with mentor guidance and verified certificates.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 8. Mini Projects -->
+        <a href="services/mini-projects.html" class="division-card">
+          <div class="division-icon" style="background: rgba(168, 85, 247, 0.15); color: #A855F7; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <h3 class="division-title">Mini Projects</h3>
+          <p class="division-desc">Guided academic, final-year, and portfolio mini-projects for college students with complete source code, viva preparation, and reports.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 9. IT / Technology Consulting -->
+        <a href="services/consulting.html" class="division-card">
+          <div class="division-icon" style="background: rgba(34, 197, 94, 0.15); color: #22C55E; border: 1px solid rgba(34, 197, 94, 0.3);">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <h3 class="division-title">IT / Technology Consulting</h3>
+          <p class="division-desc">Strategic technology advisory, system architecture audits, cloud migration strategies, cybersecurity reviews, and startup MVP planning.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 10. Business & Branding Solutions -->
+        <a href="services/branding.html" class="division-card">
+          <div class="division-icon" style="background: rgba(245, 158, 11, 0.15); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.3);">
+            <i class="fa-solid fa-id-badge"></i>
+          </div>
+          <h3 class="division-title">Business & Branding Solutions</h3>
+          <p class="division-desc">ATS-compliant resume optimization, LinkedIn profile overhaul, GitHub documentation polish, personal portfolios, and graphic design.</p>
+          <span class="division-link">Open Dedicated Page <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="assets/images/logo.png" alt="Kiyo Tak" style="width: 44px; height: 44px; border-radius:50%;">
+          <span style="font-size: 1.4rem; font-weight: 800; color: #FFF;">Kiyo Tak</span>
+        </div>
+        <p>"Learn · Build · Advance"<br>Corporate Technology & Innovation Company.</p>
+      </div>
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="internships.html">Internships</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Top Divisions</h4>
+        <ul class="footer-links">
+          <li><a href="services/software-development.html">Software Development</a></li>
+          <li><a href="services/artificial-intelligence.html">AI & ML</a></li>
+          <li><a href="services/web-development.html">Web Development</a></li>
+          <li><a href="services/electronics.html">Electronics & IoT</a></li>
+          <li><a href="services/digital-marketing.html">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
+          <i class="fa-solid fa-envelope"></i> <a href="mailto:kiyotakhr@gmail.com" style="color:#FFF;">kiyotakhr@gmail.com</a><br>
+          <i class="fa-solid fa-phone"></i> +91 9943587707<br>
+          <i class="fa-brands fa-whatsapp"></i> 9943587707<br>
+          <i class="fa-brands fa-instagram"></i> @kiyo__tak
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Kiyo Tak. All Rights Reserved.</div>
+      <div>Official Email: <a href="mailto:kiyotakhr@gmail.com" style="color:var(--brand-gold);">kiyotakhr@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919943587707?text=Hi%20Kiyo%20Tak%20Team" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <div class="whatsapp-badge">1</div>
+  </a>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

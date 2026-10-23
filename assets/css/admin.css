@@ -1,0 +1,486 @@
+/* ==========================================================================
+   KIYOTAK ADMIN CONSOLE - CONTROL ROOM STYLES
+   Design: Dark Sidebar + Light Content Workspace + Teal & Coral Accents + Monospace Labels
+   ========================================================================== */
+
+:root {
+  --admin-sidebar-bg: #0c121e;
+  --admin-sidebar-border: #1e293b;
+  --admin-sidebar-text: #94a3b8;
+  --admin-sidebar-active: #14b8a6;
+  
+  --admin-content-bg: #f8fafc;
+  --admin-card-bg: #ffffff;
+  --admin-card-border: #e2e8f0;
+  
+  --admin-text-main: #0f172a;
+  --admin-text-muted: #64748b;
+  
+  --admin-teal: #0d9488;
+  --admin-teal-light: #14b8a6;
+  --admin-teal-glow: rgba(20, 184, 166, 0.2);
+  
+  --admin-coral: #f43f5e;
+  --admin-coral-light: #fb7185;
+  
+  --admin-gold: #d97706;
+  --admin-blue: #2563eb;
+  
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.admin-body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--admin-content-bg);
+  color: var(--admin-text-main);
+  font-family: var(--font-sans);
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Monospace Badges & Labels */
+.ctrl-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--admin-text-muted);
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.mono-tag.teal {
+  background: rgba(20, 184, 166, 0.12);
+  color: var(--admin-teal);
+  border-color: rgba(20, 184, 166, 0.3);
+}
+
+.mono-tag.coral {
+  background: rgba(244, 63, 94, 0.12);
+  color: var(--admin-coral);
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 260px;
+  background: var(--admin-sidebar-bg);
+  border-right: 1px solid var(--admin-sidebar-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 50;
+  transition: transform 0.3s ease;
+}
+
+.admin-brand {
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--admin-sidebar-border);
+}
+
+.admin-logo-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--admin-teal);
+}
+
+.admin-brand-info h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #f8fafc;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.admin-brand-info span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--admin-teal);
+  text-transform: uppercase;
+}
+
+.admin-nav {
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--admin-sidebar-text);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.admin-nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.admin-nav-item.active {
+  background: rgba(20, 184, 166, 0.15);
+  color: var(--admin-teal-light);
+  border-left: 3px solid var(--admin-teal-light);
+  font-weight: 600;
+}
+
+.admin-nav-item i {
+  width: 20px;
+  font-size: 1rem;
+}
+
+.admin-sidebar-footer {
+  padding: 18px 20px;
+  border-top: 1px solid var(--admin-sidebar-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main Layout */
+.admin-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--admin-content-bg);
+}
+
+.admin-topbar {
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--admin-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  flex-shrink: 0;
+}
+
+.admin-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-topbar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--admin-text-main);
+  margin: 0;
+}
+
+.admin-viewport {
+  flex-grow: 1;
+  padding: 28px;
+  overflow-y: auto;
+}
+
+/* Admin Cards */
+.ctrl-card {
+  background: var(--admin-card-bg);
+  border: 1px solid var(--admin-card-border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+}
+
+.ctrl-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ctrl-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--admin-text-main);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   ADMIN EXECUTIVE KPI METRIC CARDS (Professional Multi-Color Palette)
+   ========================================================================== */
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+@media (max-width: 1024px) {
+  .admin-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .admin-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.admin-kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px -4px rgba(0, 0, 0, 0.08);
+}
+
+.admin-kpi-card.teal {
+  border-left: 4px solid var(--admin-teal);
+}
+.admin-kpi-card.teal .kpi-icon {
+  background: rgba(13, 148, 136, 0.12);
+  color: var(--admin-teal);
+}
+
+.admin-kpi-card.indigo {
+  border-left: 4px solid #6366f1;
+}
+.admin-kpi-card.indigo .kpi-icon {
+  background: rgba(99, 102, 241, 0.12);
+  color: #6366f1;
+}
+
+.admin-kpi-card.amber {
+  border-left: 4px solid #f59e0b;
+}
+.admin-kpi-card.amber .kpi-icon {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+
+.admin-kpi-card.coral {
+  border-left: 4px solid var(--admin-coral);
+}
+.admin-kpi-card.coral .kpi-icon {
+  background: rgba(244, 63, 94, 0.12);
+  color: var(--admin-coral);
+}
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.kpi-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.kpi-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--admin-text-main);
+  line-height: 1.1;
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+}
+.kpi-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--admin-text-muted);
+}
+
+/* Control Buttons */
+.btn-ctrl {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.btn-ctrl-teal {
+  background: var(--admin-teal);
+  color: #ffffff;
+}
+.btn-ctrl-teal:hover {
+  background: #0f766e;
+}
+
+.btn-ctrl-coral {
+  background: var(--admin-coral);
+  color: #ffffff;
+}
+.btn-ctrl-coral:hover {
+  background: #e11d48;
+}
+
+.btn-ctrl-outline {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+.btn-ctrl-outline:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* Dropzone for Excel */
+.ctrl-dropzone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 36px 20px;
+  text-align: center;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ctrl-dropzone:hover, .ctrl-dropzone.dragover {
+  border-color: var(--admin-teal);
+  background: rgba(20, 184, 166, 0.05);
+}
+
+.ctrl-dropzone i {
+  font-size: 2.5rem;
+  color: var(--admin-teal);
+  margin-bottom: 12px;
+}
+
+/* Data Table */
+.ctrl-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.ctrl-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.ctrl-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ctrl-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+}
+
+.ctrl-table tr:hover {
+  background: #f8fafc;
+}
+
+/* Certificate Live Preview Canvas */
+.canvas-preview-container {
+  background: #1e293b;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+
+#certCanvas {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+/* Sliders Control Panel */
+.slider-group {
+  margin-bottom: 16px;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.slider-group label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.slider-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--admin-teal);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .admin-sidebar {
+    position: fixed;
+    left: -260px;
+    height: 100vh;
+  }
+  .admin-sidebar.open {
+    left: 0;
+  }
+}

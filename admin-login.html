@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiyo Tak | Control Room — Admin Login</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <style>
+    body.login-body {
+      background: #080d1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: var(--font-sans);
+    }
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(20, 184, 166, 0.15);
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--admin-teal-light), var(--admin-coral));
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .login-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 2px solid var(--admin-teal);
+    }
+    .login-title {
+      color: #f8fafc;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin: 0 0 6px 0;
+    }
+    .login-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--admin-teal-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .login-form .form-group {
+      margin-bottom: 20px;
+    }
+    .login-form label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .login-form input {
+      width: 100%;
+      box-sizing: border-box;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .login-form input:focus {
+      border-color: var(--admin-teal-light);
+      box-shadow: 0 0 0 2px var(--admin-teal-glow);
+    }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--admin-teal), #0f766e);
+      color: #ffffff;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .login-btn:hover {
+      background: linear-gradient(135deg, var(--admin-teal-light), var(--admin-teal));
+      transform: translateY(-1px);
+    }
+    .login-footer-hint {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    .login-footer-hint a {
+      color: var(--admin-teal-light);
+      text-decoration: none;
+    }
+    .login-footer-hint a:hover {
+      text-decoration: underline;
+    }
+    .alert-box {
+      display: none;
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--admin-coral);
+      color: #fca5a5;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body class="login-body">
+
+  <div class="login-container">
+    <div class="login-header">
+      <img src="assets/images/logo.png" alt="Kiyo Tak" class="login-logo">
+      <h2 class="login-title">Kiyo Tak Console</h2>
+      <div class="login-subtitle">System Access Authorization</div>
+    </div>
+
+    <div id="loginAlert" class="alert-box">
+      <i class="fa-solid fa-triangle-exclamation"></i> <span id="alertMsg">Invalid credentials</span>
+    </div>
+
+    <form class="login-form" id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+      <div class="form-group">
+        <label for="adminId"><i class="fa-solid fa-terminal"></i> Admin ID</label>
+        <input type="text" id="adminId" required placeholder="Enter Admin ID (e.g. KIYOTAK)" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="adminPass"><i class="fa-solid fa-key"></i> Password</label>
+        <input type="password" id="adminPass" required placeholder="••••••••" autocomplete="off">
+      </div>
+
+      <button type="submit" class="login-btn" id="loginSubmitBtn">
+        <i class="fa-solid fa-lock-open"></i> Authenticate & Enter Console
+      </button>
+    </form>
+
+    <div class="login-footer-hint">
+      Authorized Administrator Access Only.<br>
+      <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Return to Public Website</a>
+    </div>
+  </div>
+
+  <script>
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const adminId = document.getElementById('adminId').value.trim();
+      const password = document.getElementById('adminPass').value;
+      const alertBox = document.getElementById('loginAlert');
+      const alertMsg = document.getElementById('alertMsg');
+      const btn = document.getElementById('loginSubmitBtn');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Verifying...';
+
+      try {
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ adminId, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          sessionStorage.setItem('kiyotak_admin_token', data.token);
+          sessionStorage.setItem('kiyotak_admin_id', data.admin.id);
+          window.location.href = 'admin-console.html';
+        } else {
+          alertBox.style.display = 'block';
+          alertMsg.innerText = data.message || 'Access denied: invalid credentials';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Authenticate & Enter Console';
+        }
+      } catch (err) {
+        console.error('Login error:', err);
+        // Fallback for standalone static execution if server is offline
+        if (adminId === 'KIYOTAK' && password === 'kiyotak') {
+          sessionStorage.setItem('kiyotak_admin_token', 'offline-token');
+          sessionStorage.setItem('kiyotak_admin_id', 'KIYOTAK');
+          window.location.href = 'admin-console.html';
+        } else {
+          alertBox.style.display = 'block';
+          alertMsg.innerText = 'Authentication error. Please check credentials.';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Authenticate & Enter Console';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

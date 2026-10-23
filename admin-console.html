@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiyo Tak | Control Room — Admin Console</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/admin.css">
+
+  <!-- SheetJS & JSZip & Canvas PDF libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="admin-body">
+
+  <!-- Dark Control Room Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-brand">
+      <img src="assets/images/logo.png" alt="Kiyo Tak" class="admin-logo-img">
+      <div class="admin-brand-info">
+        <h4>KIYO TAK</h4>
+        <span>CONTROL ROOM V2.4</span>
+      </div>
+    </div>
+
+    <nav class="admin-nav">
+      <div class="ctrl-label" style="padding: 10px 8px 4px;">Main Modules</div>
+      <a class="admin-nav-item active" onclick="switchAdminTab('certificates', this)">
+        <i class="fa-solid fa-certificate"></i>
+        <span>Certificates (Excel)</span>
+      </a>
+      <a class="admin-nav-item" onclick="switchAdminTab('template-designer', this)">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Template Designer</span>
+      </a>
+      <a class="admin-nav-item" onclick="switchAdminTab('reviews', this)">
+        <i class="fa-solid fa-star-half-stroke"></i>
+        <span>Reviews & Ratings</span>
+      </a>
+      <a class="admin-nav-item" onclick="switchAdminTab('applications', this)">
+        <i class="fa-solid fa-envelope-open-text"></i>
+        <span>Student Inquiries</span>
+      </a>
+
+      <div class="ctrl-label" style="padding: 20px 8px 4px;">Quick Actions</div>
+      <a class="admin-nav-item" href="index.html" target="_blank">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <span>Live Public Site</span>
+      </a>
+      <a class="admin-nav-item" href="dashboard.html" target="_blank">
+        <i class="fa-solid fa-user"></i>
+        <span>Student Portal</span>
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <div>
+        <div style="font-size:0.8rem; font-weight:700; color:#f8fafc;">Operator: KIYOTAK</div>
+        <div class="ctrl-label" style="color:var(--admin-teal-light);"><span style="display:inline-block; width:6px; height:6px; background:var(--admin-teal-light); border-radius:50%; margin-right:4px;"></span>ONLINE</div>
+      </div>
+      <button onclick="handleAdminLogout()" class="btn-ctrl btn-ctrl-outline" style="padding:6px 10px; font-size:0.75rem; color:var(--admin-coral);" title="Logout">
+        <i class="fa-solid fa-power-off"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Content Workspace -->
+  <main class="admin-main">
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button id="sidebarToggle" class="btn-ctrl btn-ctrl-outline" style="padding:6px 12px; display:none; @media(max-width:900px){display:inline-flex;}">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h1 class="admin-topbar-title" id="adminModuleTitle">Internship Certificate Generation & Registry</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="mono-tag teal"><i class="fa-solid fa-shield"></i> SERVER SECURED</span>
+        <button onclick="window.location.reload()" class="btn-ctrl btn-ctrl-outline" style="padding:6px 12px;" title="Refresh Data">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Viewport Container -->
+    <div class="admin-viewport">
+
+      <!-- ============================================================
+           TAB 1: CERTIFICATES & EXCEL PIPELINE
+           ============================================================ -->
+      <div id="tab-certificates" class="admin-tab-pane">
+        
+        <!-- EXECUTIVE CONTROL KPI METRICS BAR -->
+        <div class="admin-kpi-grid">
+          <!-- 1. Electric Teal: Total Issued -->
+          <div class="admin-kpi-card teal">
+            <div class="kpi-header">
+              <span class="ctrl-label">REGISTRY</span>
+              <div class="kpi-icon"><i class="fa-solid fa-award"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiTotalCerts">0</div>
+            <div class="kpi-title">Total Certificates Issued</div>
+          </div>
+
+          <!-- 2. Royal Indigo: Active Students -->
+          <div class="admin-kpi-card indigo">
+            <div class="kpi-header">
+              <span class="ctrl-label">RECORDS</span>
+              <div class="kpi-icon"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiTotalStudents">0</div>
+            <div class="kpi-title">Active Student Database</div>
+          </div>
+
+          <!-- 3. Amber / Gold: Unlocked Passports -->
+          <div class="admin-kpi-card amber">
+            <div class="kpi-header">
+              <span class="ctrl-label">ACCESS</span>
+              <div class="kpi-icon"><i class="fa-solid fa-unlock-keyhole"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiUnlockedCerts">0</div>
+            <div class="kpi-title">Unlocked / Free Passports</div>
+          </div>
+
+          <!-- 4. Sunset Coral: Reviews in Queue -->
+          <div class="admin-kpi-card coral">
+            <div class="kpi-header">
+              <span class="ctrl-label">MODERATION</span>
+              <div class="kpi-icon"><i class="fa-solid fa-comments"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiPendingReviews">0</div>
+            <div class="kpi-title">Pending Student Testimonials</div>
+          </div>
+        </div>
+
+        <!-- Batch Upload & Generation Section -->
+        <div class="ctrl-card">
+          <div class="ctrl-card-header">
+            <h3 class="ctrl-card-title">
+              <i class="fa-solid fa-file-excel" style="color:var(--admin-teal);"></i>
+              Batch Certificate Generation from Excel / CSV
+            </h3>
+            <div style="display:flex; gap:10px;">
+              <a href="/api/admin/certificates/sample-excel" download="KiyoTak_Internship_Sample.xlsx" class="btn-ctrl btn-ctrl-outline">
+                <i class="fa-solid fa-download"></i> Download Sample Excel (.xlsx)
+              </a>
+            </div>
+          </div>
+
+          <!-- Dropzone -->
+          <div class="ctrl-dropzone" id="excelDropzone" onclick="document.getElementById('excelFileInput').click()">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <div style="font-size: 1.1rem; font-weight:700; color:var(--admin-text-main); margin-bottom:4px;">
+              Click to select or drag and drop your Excel / CSV file
+            </div>
+            <div style="font-size: 0.85rem; color: var(--admin-text-muted);">
+              Supports <span class="mono-tag">.xlsx</span>, <span class="mono-tag">.xls</span>, and <span class="mono-tag">.csv</span> with headers: 
+              <strong>Name, Email, Course, Start Date, End Date, Grade</strong>
+            </div>
+            <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv" style="display:none;" onchange="handleExcelFileUpload(event)">
+          </div>
+
+          <!-- Parsed Excel Preview Section (Visible after upload) -->
+          <div id="excelPreviewSection" style="display:none; margin-top:28px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:12px;">
+              <div>
+                <h4 style="margin:0 0 4px 0; font-size:1.05rem;">Upload Validation Summary</h4>
+                <div style="display:flex; gap:10px; font-size:0.85rem;">
+                  <span class="mono-tag teal" id="statValidRows">0 Valid Rows</span>
+                  <span class="mono-tag coral" id="statInvalidRows">0 Flagged Rows</span>
+                  <span class="mono-tag" id="statTotalRows">0 Total</span>
+                </div>
+              </div>
+
+              <!-- Payment Link Option Controls -->
+              <div style="display:flex; align-items:center; gap:16px; background:#f8fafc; padding:8px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:600; cursor:pointer;">
+                  <input type="checkbox" id="chkPaymentRequired" style="width:16px; height:16px; accent-color:var(--admin-teal);">
+                  <span>Require Fee to Unlock Certificate (Paid Certificate Option)</span>
+                </label>
+                <div id="paymentAmountWrap" style="display:none; align-items:center; gap:6px;">
+                  <span style="font-size:0.8rem; color:var(--admin-text-muted);">Fee (₹):</span>
+                  <input type="number" id="txtPaymentAmount" value="499" style="width:75px; padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; font-family:var(--font-mono); font-size:0.85rem;">
+                </div>
+              </div>
+
+              <div style="display:flex; gap:10px;">
+                <button onclick="clearExcelUpload()" class="btn-ctrl btn-ctrl-outline">Cancel</button>
+                <button onclick="generateBatchCertificates()" class="btn-ctrl btn-ctrl-teal" id="btnGenerateBatch">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Generate All Valid Certificates
+                </button>
+              </div>
+            </div>
+
+            <!-- Preview Table with Error Flags -->
+            <div class="ctrl-table-wrapper" style="max-height: 380px;">
+              <table class="ctrl-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Status</th>
+                    <th>Student Name</th>
+                    <th>Email Address</th>
+                    <th>Course / Track</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Grade</th>
+                    <th>Validation Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="excelPreviewTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate Issued Registry -->
+        <div class="ctrl-card">
+          <div class="ctrl-card-header">
+            <h3 class="ctrl-card-title">
+              <i class="fa-solid fa-database" style="color:var(--admin-teal);"></i>
+              Issued Certificates Registry (<span id="certRegistryCount">0</span>)
+            </h3>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button onclick="exportCertificatesToExcel()" class="btn-ctrl btn-ctrl-outline">
+                <i class="fa-solid fa-file-export"></i> Export to Excel
+              </button>
+              <button onclick="downloadAllCertificatesZip()" class="btn-ctrl btn-ctrl-teal" id="btnDownloadAllZip">
+                <i class="fa-solid fa-file-zipper"></i> Download All as ZIP
+              </button>
+            </div>
+          </div>
+
+          <!-- Search & Filter Bar -->
+          <div style="display:flex; gap:14px; margin-bottom:18px; flex-wrap:wrap;">
+            <div style="flex-grow:1; min-width:240px; position:relative;">
+              <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:12px; top:11px; color:#94a3b8; font-size:0.85rem;"></i>
+              <input type="text" id="certSearchInput" placeholder="Search by Student Name, Email, or Certificate ID..." oninput="filterCertTable()" style="width:100%; box-sizing:border-box; padding:9px 12px 9px 34px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.88rem; outline:none;">
+            </div>
+            <select id="certFilterPayment" onchange="filterCertTable()" style="padding:9px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.85rem; background:#ffffff;">
+              <option value="all">All Certificates</option>
+              <option value="unlocked">Unlocked / Paid</option>
+              <option value="locked">Locked / Payment Required</option>
+            </select>
+          </div>
+
+          <!-- Certificates Table -->
+          <div class="ctrl-table-wrapper">
+            <table class="ctrl-table">
+              <thead>
+                <tr>
+                  <th>Certificate ID</th>
+                  <th>Student Name</th>
+                  <th>Email</th>
+                  <th>Course Track</th>
+                  <th>Issue Date</th>
+                  <th>Grade</th>
+                  <th>Access / Paid Status</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="certRegistryTableBody">
+                <tr><td colspan="8" style="text-align:center; color:#94a3b8; padding:30px;">Loading certificates registry...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============================================================
+           TAB 2: TEMPLATE DESIGNER & POSITION SLIDERS
+           ============================================================ -->
+      <div id="tab-template-designer" class="admin-tab-pane" style="display:none;">
+        <div class="ctrl-card">
+          <div class="ctrl-card-header">
+            <h3 class="ctrl-card-title">
+              <i class="fa-solid fa-palette" style="color:var(--admin-teal);"></i>
+              Certificate Template & Text Position Controls
+            </h3>
+            <div style="display:flex; gap:10px;">
+              <button onclick="resetTemplatePositions()" class="btn-ctrl btn-ctrl-outline">Reset to Defaults</button>
+              <button onclick="saveTemplateConfigToServer()" class="btn-ctrl btn-ctrl-teal"><i class="fa-solid fa-check"></i> Save Template Settings</button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px; align-items:flex-start;">
+            
+            <!-- Left: Live Canvas Rendering -->
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span class="ctrl-label">Live Template Preview with Student Overlay</span>
+                <span class="mono-tag teal" id="canvasResLabel">1200 x 850 PX</span>
+              </div>
+              <div class="canvas-preview-container">
+                <canvas id="certCanvas" width="1200" height="850"></canvas>
+              </div>
+
+              <!-- Upload Custom Background Image Option -->
+              <div style="margin-top:16px; background:#f8fafc; padding:16px; border-radius:8px; border:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <div style="font-weight:700; font-size:0.9rem;">Upload Custom Certificate Background Image</div>
+                  <div style="font-size:0.8rem; color:var(--admin-text-muted);">Replace with another corporate template design (.png / .jpg)</div>
+                </div>
+                <div>
+                  <input type="file" id="templateImageUploadInput" accept="image/*" style="display:none;" onchange="handleTemplateImageUpload(event)">
+                  <button onclick="document.getElementById('templateImageUploadInput').click()" class="btn-ctrl btn-ctrl-outline">
+                    <i class="fa-solid fa-upload"></i> Upload Image
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Sliders & Styling -->
+            <div>
+              <div class="ctrl-label" style="margin-bottom:12px;">Position & Style Sliders</div>
+
+              <!-- 1. Student Name Controls -->
+              <div class="slider-group">
+                <label>
+                  <span>Student Name Position (Y-Axis)</span>
+                  <span id="val_name_y">46%</span>
+                </label>
+                <input type="range" min="10" max="90" step="0.5" id="slider_name_y" value="46" oninput="updateLiveCanvas()">
+                
+                <div style="display:flex; gap:12px; margin-top:8px;">
+                  <div style="flex:1;">
+                    <label style="font-size:0.72rem;">Font Size (px)</label>
+                    <input type="range" min="20" max="70" step="1" id="slider_name_size" value="44" oninput="updateLiveCanvas()">
+                  </div>
+                  <div>
+                    <label style="font-size:0.72rem;">Text Color</label>
+                    <input type="color" id="picker_name_color" value="#0d1b2a" onchange="updateLiveCanvas()" style="width:40px; height:28px; padding:0; border:none; cursor:pointer;">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Course Title Controls -->
+              <div class="slider-group">
+                <label>
+                  <span>Course Title Position (Y-Axis)</span>
+                  <span id="val_course_y">62.5%</span>
+                </label>
+                <input type="range" min="30" max="85" step="0.5" id="slider_course_y" value="62.5" oninput="updateLiveCanvas()">
+                <div style="display:flex; gap:12px; margin-top:8px;">
+                  <div style="flex:1;">
+                    <label style="font-size:0.72rem;">Font Size (px)</label>
+                    <input type="range" min="12" max="32" step="1" id="slider_course_size" value="17" oninput="updateLiveCanvas()">
+                  </div>
+                  <div>
+                    <label style="font-size:0.72rem;">Text Color</label>
+                    <input type="color" id="picker_course_color" value="#2b2d42" onchange="updateLiveCanvas()" style="width:40px; height:28px; padding:0; border:none; cursor:pointer;">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Dates & Grade Controls -->
+              <div class="slider-group">
+                <label>
+                  <span>Dates & Grade Position (Y-Axis)</span>
+                  <span id="val_date_y">66%</span>
+                </label>
+                <input type="range" min="40" max="90" step="0.5" id="slider_date_y" value="66" oninput="updateLiveCanvas()">
+                <div style="display:flex; gap:12px; margin-top:8px;">
+                  <div style="flex:1;">
+                    <label style="font-size:0.72rem;">Font Size (px)</label>
+                    <input type="range" min="10" max="24" step="1" id="slider_date_size" value="15" oninput="updateLiveCanvas()">
+                  </div>
+                  <div>
+                    <label style="font-size:0.72rem;">Text Color</label>
+                    <input type="color" id="picker_date_color" value="#4a4e69" onchange="updateLiveCanvas()" style="width:40px; height:28px; padding:0; border:none; cursor:pointer;">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Certificate ID Position -->
+              <div class="slider-group">
+                <label>
+                  <span>Certificate ID Position (X / Y)</span>
+                  <span id="val_certId_pos">91% / 94%</span>
+                </label>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                  <div>
+                    <span style="font-size:0.7rem; color:#64748b;">X-Axis:</span>
+                    <input type="range" min="10" max="98" step="1" id="slider_certId_x" value="91" oninput="updateLiveCanvas()">
+                  </div>
+                  <div>
+                    <span style="font-size:0.7rem; color:#64748b;">Y-Axis:</span>
+                    <input type="range" min="50" max="98" step="1" id="slider_certId_y" value="94" oninput="updateLiveCanvas()">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           TAB 3: REVIEWS & GOOGLE RATINGS MODERATION
+           ============================================================ -->
+      <div id="tab-reviews" class="admin-tab-pane" style="display:none;">
+        <div class="ctrl-card">
+          <div class="ctrl-card-header">
+            <h3 class="ctrl-card-title">
+              <i class="fa-solid fa-star" style="color:var(--admin-gold);"></i>
+              Customer Reviews & Google Rating Moderation
+            </h3>
+            <button onclick="openAddReviewModal()" class="btn-ctrl btn-ctrl-teal">
+              <i class="fa-solid fa-plus"></i> Add Verified Review Manually
+            </button>
+          </div>
+
+          <p style="font-size:0.9rem; color:var(--admin-text-muted); margin-bottom:20px;">
+            Visitor reviews submitted on the public website remain <strong>Pending</strong> until approved here. Approved reviews immediately calculate the public Google-style rating score.
+          </p>
+
+          <div class="ctrl-table-wrapper">
+            <table class="ctrl-table">
+              <thead>
+                <tr>
+                  <th>Reviewer Name</th>
+                  <th>Stars</th>
+                  <th>Course / Subject</th>
+                  <th>Review Comment</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th style="text-align:right;">Moderation Actions</th>
+                </tr>
+              </thead>
+              <tbody id="reviewsTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:30px; color:#94a3b8;">Loading reviews...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           TAB 4: APPLICATIONS & STUDENT INQUIRIES
+           ============================================================ -->
+      <div id="tab-applications" class="admin-tab-pane" style="display:none;">
+        <div class="ctrl-card">
+          <div class="ctrl-card-header">
+            <h3 class="ctrl-card-title">
+              <i class="fa-solid fa-envelope-open-text" style="color:var(--admin-teal);"></i>
+              Incoming Mentorship & Service Applications
+            </h3>
+            <span class="mono-tag teal" id="appCountTag">0 Total Inquiries</span>
+          </div>
+
+          <p style="font-size:0.9rem; color:var(--admin-text-muted); margin-bottom:16px;">
+            Submitted through the public website. Submissions are stored here and logged directly for transmission to <strong>kiyotakhtofficial@gmail.com</strong>.
+          </p>
+
+          <div class="ctrl-table-wrapper">
+            <table class="ctrl-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Student Name</th>
+                  <th>Phone Number</th>
+                  <th>Email</th>
+                  <th>Location</th>
+                  <th>Service Track</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody id="applicationsTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:30px; color:#94a3b8;">Loading inquiries...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Add Review Modal -->
+  <div id="addReviewModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:100; align-items:center; justify-content:center;">
+    <div style="background:#ffffff; border-radius:10px; width:100%; max-width:500px; padding:24px; box-shadow:0 20px 25px -5px rgba(0,0,0,0.3);">
+      <h3 style="margin:0 0 16px 0; font-size:1.15rem;">Add Customer Review</h3>
+      <form onsubmit="handleManualReviewSubmit(event)">
+        <div style="margin-bottom:12px;">
+          <label class="ctrl-label">Student / Client Name *</label>
+          <input type="text" id="manRevName" required style="width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #cbd5e1; border-radius:4px; margin-top:4px;">
+        </div>
+        <div style="margin-bottom:12px;">
+          <label class="ctrl-label">Rating *</label>
+          <select id="manRevRating" style="width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:4px; margin-top:4px;">
+            <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+            <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+            <option value="3">⭐⭐⭐ (3 Stars)</option>
+            <option value="2">⭐⭐ (2 Stars)</option>
+            <option value="1">⭐ (1 Star)</option>
+          </select>
+        </div>
+        <div style="margin-bottom:12px;">
+          <label class="ctrl-label">Course / Division</label>
+          <input type="text" id="manRevCourse" placeholder="e.g. Full-Stack Development / IoT" style="width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #cbd5e1; border-radius:4px; margin-top:4px;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label class="ctrl-label">Review Comment *</label>
+          <textarea id="manRevComment" rows="3" required style="width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #cbd5e1; border-radius:4px; margin-top:4px;"></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+          <button type="button" onclick="closeAddReviewModal()" class="btn-ctrl btn-ctrl-outline">Cancel</button>
+          <button type="submit" class="btn-ctrl btn-ctrl-teal">Save & Approve</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

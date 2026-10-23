@@ -1,0 +1,45 @@
+{
+  "templateImage": "/assets/images/certificate-template.png",
+  "positions": {
+    "name": {
+      "x": 50,
+      "y": 46,
+      "fontSize": 44,
+      "color": "#0d1b2a",
+      "fontWeight": "bold",
+      "fontFamily": "Playfair Display, serif"
+    },
+    "course": {
+      "x": 50,
+      "y": 62.5,
+      "fontSize": 17,
+      "color": "#2b2d42",
+      "fontWeight": "600",
+      "fontFamily": "Inter, sans-serif"
+    },
+    "date": {
+      "x": 50,
+      "y": 65.5,
+      "fontSize": 15,
+      "color": "#4a4e69",
+      "fontWeight": "normal",
+      "fontFamily": "Inter, sans-serif"
+    },
+    "grade": {
+      "x": 50,
+      "y": 68.5,
+      "fontSize": 15,
+      "color": "#c59b27",
+      "fontWeight": "bold",
+      "fontFamily": "Inter, sans-serif"
+    },
+    "certId": {
+      "x": 91,
+      "y": 94,
+      "fontSize": 13,
+      "color": "#1e3a8a",
+      "fontWeight": "bold",
+      "fontFamily": "Courier New, monospace"
+    }
+  }
+}

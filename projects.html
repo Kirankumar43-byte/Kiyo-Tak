@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects & Portfolio | Kiyo Tak — Enterprise & Research Solutions</title>
+  <meta name="description" content="Explore Kiyo Tak's featured engineering and research projects across Software, Artificial Intelligence, IoT Electronics, Mobile Apps, and Web Platforms.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-left">
+        <a href="tel:9943587707" class="top-item"><i class="fa-solid fa-phone" style="color: var(--brand-blue-light);"></i> +91 9943587707</a>
+        <a href="mailto:kiyotakhr@gmail.com" class="top-item"><i class="fa-solid fa-envelope" style="color: var(--brand-gold);"></i> kiyotakhr@gmail.com</a>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://instagram.com/kiyo__tak" target="_blank" class="top-item"><i class="fa-brands fa-instagram"></i> @kiyo__tak</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Kiyo Tak Logo" class="logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Kiyo Tak</span>
+          <span class="brand-tagline">Learn · Build · Advance</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="internships.html" class="nav-link">Internships</a></li>
+          <li><a href="careers.html" class="nav-link">Careers</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
+        <a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Get Started</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Navigation"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span>/</span> <span>Projects & Portfolio</span>
+    </div>
+    <h1 class="page-hero-title">Featured <span style="background: linear-gradient(135deg, #38BDF8, #EAB308); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Projects & Innovations</span></h1>
+    <p class="page-hero-subtitle">
+      A showcase of enterprise software systems, AI pipelines, IoT embedded hardware devices, and high-converting marketing campaigns built by Kiyo Tak engineers and students.
+    </p>
+  </div>
+
+  <!-- Projects Showcase Section -->
+  <section style="padding-top: 20px;">
+    <div class="section-container">
+      
+      <!-- Filter Tabs -->
+      <div class="filter-container">
+        <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
+        <button class="filter-btn" onclick="filterProjects('software', this)">Software</button>
+        <button class="filter-btn" onclick="filterProjects('ai', this)">AI & ML</button>
+        <button class="filter-btn" onclick="filterProjects('web', this)">Web Apps</button>
+        <button class="filter-btn" onclick="filterProjects('mobile', this)">Mobile</button>
+        <button class="filter-btn" onclick="filterProjects('electronics', this)">Electronics & IoT</button>
+        <button class="filter-btn" onclick="filterProjects('marketing', this)">Marketing</button>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="divisions-grid" id="projectCardsContainer">
+        
+        <!-- Project 1 -->
+        <div class="project-card" data-category="software web">
+          <div class="project-thumb">
+            <i class="fa-solid fa-cloud" style="color:var(--brand-blue-light);"></i>
+            <span class="project-tag">Enterprise SaaS</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Cloud Resource Orchestrator</h3>
+            <p class="project-desc">A multi-tenant dashboard for automated cloud infrastructure provisioning, cost telemetry, and automated container scaling.</p>
+            <div class="project-tech">
+              <span class="tech-badge">React.js</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">AWS SDK</span>
+              <span class="tech-badge">Docker</span>
+            </div>
+            <a href="contact.html?subject=Cloud+Resource+Orchestrator" class="btn btn-outline" style="font-size:0.8rem; padding:6px 12px; margin-top:auto;"><i class="fa-solid fa-eye"></i> View Case Study</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-category="ai">
+          <div class="project-thumb">
+            <i class="fa-solid fa-brain" style="color:var(--brand-lavender);"></i>
+            <span class="project-tag">AI & NLP</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Autonomous Medical Document Parser</h3>
+            <p class="project-desc">Transformer-based OCR and NLP pipeline that extracts clinical diagnostic entities from unstructured physician notes with 97% accuracy.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">HuggingFace</span>
+              <span class="tech-badge">FastAPI</span>
+              <span class="tech-badge">PyTorch</span>
+            </div>
+            <a href="contact.html?subject=Medical+AI+Parser" class="btn btn-outline" style="font-size:0.8rem; padding:6px 12px; margin-top:auto;"><i class="fa-solid fa-eye"></i> View Case Study</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-category="electronics">
+          <div class="project-thumb">
+            <i class="fa-solid fa-microchip" style="color:var(--brand-gold);"></i>
+            <span class="project-tag">IoT Hardware</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Smart Agriculture Telemetry Cluster</h3>
+            <p class="project-desc">Solar-powered ESP32 wireless sensor nodes transmitting soil moisture, temperature, and NPK metrics via LoRa to a central farm controller.</p>
+            <div class="project-tech">
+              <span class="tech-badge">ESP32</span>
+              <span class="tech-badge">KiCAD PCB</span>
+              <span class="tech-badge">LoRaWAN</span>
+              <span class="tech-badge">MQTT</span>
+            </div>
+            <a href="contact.html?subject=Smart+Agri+IoT" class="btn btn-outline" style="font-size:0.8rem; padding:6px 12px; margin-top:auto;"><i class="fa-solid fa-eye"></i> View Case Study</a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-category="mobile">
+          <div class="project-thumb">
+            <i class="fa-solid fa-mobile-screen-button" style="color:#10B981;"></i>
+            <span class="project-tag">Cross-Platform App</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Campus Hub & Placement Tracker</h3>
+            <p class="project-desc">Mobile application for university students to track placement drives, schedule technical mock interviews, and receive real-time push alerts.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Flutter</span>
+              <span class="tech-badge">Firebase</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">REST API</span>
+            </div>
+            <a href="contact.html?subject=Campus+Hub+App" class="btn btn-outline" style="font-size:0.8rem; padding:6px 12px; margin-top:auto;"><i class="fa-solid fa-eye"></i> View Case Study</a>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-category="web marketing">
+          <div class="project-thumb">
+            <i class="fa-solid fa-cart-shopping" style="color:#FB7185;"></i>
+            <span class="project-tag">E-Commerce & SEO</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">High-Converting Direct-to-Consumer Portal</h3>
+            <p class="project-desc">Modern e-commerce platform with automated payment gateway, live inventory sync, dynamic SEO metadata, and 45% conversion uplift.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Next.js</span>
+              <span class="tech-badge">Stripe</span>
+              <span class="tech-badge">PostgreSQL</span>
+              <span class="tech-badge">Google Ads</span>
+            </div>
+            <a href="contact.html?subject=D2C+Portal" class="btn btn-outline" style="font-size:0.8rem; padding:6px 12px; margin-top:auto;"><i class="fa-solid fa-eye"></i> View Case Study</a>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-category="electronics ai">
+          <div class="project-thumb">
+            <i class="fa-solid fa-robot" style="color:var(--brand-gold);"></i>
+            <span class="project-tag">Edge AI & Robotics</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Edge AI Defect Detection Sorter</h3>
+            <p class="project-desc">Raspberry Pi + Coral Edge TPU computer vision system identifying manufacturing micro-cracks on conveyor lines in real-time under 20ms.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Raspberry Pi</span>
+              <span class="tech-badge">OpenCV</span>
+              <span class="tech-badge">TensorFlow Lite</span>
+              <span class="tech-badge">Python</span>
+            </div>
+            <a href="contact.html?subject=Edge+AI+Sorter" class="btn btn-outline" style="font-size:0.8rem; padding:6px 12px; margin-top:auto;"><i class="fa-solid fa-eye"></i> View Case Study</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section style="background: var(--bg-secondary); border-top: 1px solid var(--bg-card-border); text-align: center;">
+    <div class="section-container">
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px;">Want to Build Your Next Project With Kiyo Tak?</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 24px;">
+        Whether you are looking for custom enterprise development or student project guidance, our team is ready to assist.
+      </p>
+      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-gold"><i class="fa-solid fa-rocket"></i> Start Your Project</a>
+        <a href="services/mini-projects.html" class="btn btn-outline"><i class="fa-solid fa-laptop-code"></i> Browse Mini Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="assets/images/logo.png" alt="Kiyo Tak" style="width: 44px; height: 44px; border-radius:50%;">
+          <span style="font-size: 1.4rem; font-weight: 800; color: #FFF;">Kiyo Tak</span>
+        </div>
+        <p>"Learn · Build · Advance"<br>Corporate Technology & Innovation Company.</p>
+      </div>
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="internships.html">Internships</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Top Divisions</h4>
+        <ul class="footer-links">
+          <li><a href="services/software-development.html">Software Development</a></li>
+          <li><a href="services/artificial-intelligence.html">AI & ML</a></li>
+          <li><a href="services/web-development.html">Web Development</a></li>
+          <li><a href="services/electronics.html">Electronics & IoT</a></li>
+          <li><a href="services/digital-marketing.html">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
+          <i class="fa-solid fa-envelope"></i> <a href="mailto:kiyotakhr@gmail.com" style="color:#FFF;">kiyotakhr@gmail.com</a><br>
+          <i class="fa-solid fa-phone"></i> +91 9943587707<br>
+          <i class="fa-brands fa-whatsapp"></i> 9943587707<br>
+          <i class="fa-brands fa-instagram"></i> @kiyo__tak
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Kiyo Tak. All Rights Reserved.</div>
+      <div>Official Email: <a href="mailto:kiyotakhr@gmail.com" style="color:var(--brand-gold);">kiyotakhr@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919943587707?text=Hi%20Kiyo%20Tak%20Team" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <div class="whatsapp-badge">1</div>
+  </a>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function filterProjects(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        if (cat === 'all') {
+          card.style.display = 'flex';
+        } else {
+          const cardCats = card.getAttribute('data-category') || '';
+          if (cardCats.includes(cat)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

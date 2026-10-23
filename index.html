@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiyo Tak | Learn · Build · Advance</title>
+  <meta name="description" content="Kiyo Tak - Software Development, Hardware Prototyping, Japanese Language Training (N5–N3), Digital Branding, Placement Guidance, and Verified Internship Program.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-left">
+        <a href="tel:9943587707" class="top-item"><i class="fa-solid fa-phone" style="color: var(--brand-blue-light);"></i> +91 9943587707</a>
+        <a href="mailto:kiyotakhtofficial@gmail.com" class="top-item"><i class="fa-solid fa-envelope" style="color: var(--brand-gold);"></i> kiyotakhtofficial@gmail.com</a>
+      </div>
+      <div class="top-bar-right" id="topAuthArea">
+        <!-- Rendered dynamically: Guest links or Student account link -->
+        <a href="javascript:void(0)" onclick="openAuthModal('login')" class="top-item"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+        <span style="color:var(--text-muted);">|</span>
+        <a href="javascript:void(0)" onclick="openAuthModal('register')" class="top-item"><i class="fa-solid fa-user-plus"></i> Register</a>
+        <span style="color:var(--text-muted);">|</span>
+        <a href="admin-login.html" class="top-item" style="color:var(--brand-lavender);"><i class="fa-solid fa-terminal"></i> Admin Console</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Kiyo Tak Logo" class="logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Kiyo Tak</span>
+          <span class="brand-tagline">Learn · Build · Advance</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Dark/Light theme toggle -->
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
+
+        <!-- Talk to us WhatsApp button -->
+        <a href="https://wa.me/919943587707?text=Hi%20Kiyo%20Tak%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="btn btn-whatsapp" style="display:none; @media(min-width:640px){display:inline-flex;}">
+          <i class="fa-brands fa-whatsapp"></i> Talk to us
+        </a>
+
+        <!-- Portal action -->
+        <div id="navPortalBtn">
+          <button class="btn btn-primary" onclick="openAuthModal('login')"><i class="fa-solid fa-user"></i> Student Login</button>
+        </div>
+
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Navigation"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Hero Section -->
+  <section id="home" class="hero-section">
+    <canvas id="heroCanvas" class="hero-bg-canvas"></canvas>
+    <div class="hero-glow-blob blob-1"></div>
+    <div class="hero-glow-blob blob-2"></div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-graduation-cap"></i> Next-Gen Tech, Hardware & Language Hub
+        </div>
+        <h1 class="hero-title">
+          Welcome to <br><span class="gradient-text">Kiyo Tak</span>
+        </h1>
+        <p class="hero-subtitle">
+          Empowering future-ready innovators through production-grade software development, hands-on IoT hardware engineering, JLPT Japanese language training (N5–N3), ATS digital branding, placement guidance, and verified internship certification.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#services" class="btn btn-primary">
+            <i class="fa-solid fa-cubes"></i> Explore Services
+          </a>
+          <a href="#mentorship" class="btn btn-gold">
+            <i class="fa-solid fa-calendar-check"></i> Book Mentorship
+          </a>
+          <a href="dashboard.html" class="btn btn-outline" id="heroPortalBtn">
+            <i class="fa-solid fa-award"></i> View My Certificates
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h4>500+</h4>
+            <p>Students Mentored</p>
+          </div>
+          <div class="stat-item">
+            <h4>98%</h4>
+            <p>Placement & Project Success</p>
+          </div>
+          <div class="stat-item">
+            <h4>15+</h4>
+            <p>Enterprise & IoT Projects</p>
+          </div>
+          <div class="stat-item">
+            <h4>N5–N3</h4>
+            <p>JLPT Certified Tracks</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Interactive Square Swap Service Model -->
+      <div class="hero-square-swap-widget" id="heroServiceSwapWidget">
+        <div class="swap-widget-header">
+          <div class="swap-header-title">
+            <span class="swap-indicator-icon"><i class="fa-solid fa-layer-group"></i></span>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #FFF;">Our Core Services</div>
+              <div style="font-size: 0.72rem; color: var(--text-secondary);">Interactive Square Swap Model</div>
+            </div>
+          </div>
+          <div class="swap-header-actions">
+            <span class="swap-pulse-badge"><span class="swap-pulse-dot"></span> AUTO-SWAP</span>
+            <span class="swap-counter-pill" id="swapCounterPill">01 / 06</span>
+          </div>
+        </div>
+
+        <!-- The Square Swappable Stage -->
+        <div class="swap-stage-viewport" id="swapStageViewport">
+          <!-- Card 1: Software Development -->
+          <div class="swap-service-card active" data-index="0" data-color="#38bdf8">
+            <div class="swap-card-inner">
+              <div class="swap-card-top">
+                <span class="swap-track-badge"><i class="fa-solid fa-code"></i> TRACK 01 // DEV</span>
+                <span class="swap-tag-highlight">Web & Mobile</span>
+              </div>
+              <div class="swap-icon-container" style="background: radial-gradient(circle, rgba(56,189,248,0.25) 0%, rgba(2,132,199,0.06) 70%); border-color: rgba(56,189,248,0.4);">
+                <i class="fa-solid fa-laptop-code" style="color: #38bdf8;"></i>
+              </div>
+              <h3 class="swap-service-title">Software Development</h3>
+              <p class="swap-service-desc">Production-grade full-stack web applications, React & Next.js architectures, secure microservices, APIs, and AI integrations.</p>
+              <div class="swap-feature-pills">
+                <span><i class="fa-solid fa-check"></i> React & Node.js</span>
+                <span><i class="fa-solid fa-check"></i> Cloud & APIs</span>
+                <span><i class="fa-solid fa-check"></i> Enterprise Code</span>
+              </div>
+              <div class="swap-card-footer">
+                <a href="services/software-development.html" class="swap-explore-btn">
+                  Explore Software Track <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button type="button" class="swap-next-mini-btn" onclick="swapToNextService()" title="Swap to Next Service">
+                  Swap <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Hardware Development -->
+          <div class="swap-service-card next-stack" data-index="1" data-color="#10b981">
+            <div class="swap-card-inner">
+              <div class="swap-card-top">
+                <span class="swap-track-badge" style="color:#34d399; border-color:rgba(16,185,129,0.4);"><i class="fa-solid fa-microchip"></i> TRACK 02 // HARDWARE</span>
+                <span class="swap-tag-highlight">IoT & Circuits</span>
+              </div>
+              <div class="swap-icon-container" style="background: radial-gradient(circle, rgba(16,185,129,0.25) 0%, rgba(5,150,105,0.06) 70%); border-color: rgba(16,185,129,0.4);">
+                <i class="fa-solid fa-microchip" style="color: #34d399;"></i>
+              </div>
+              <h3 class="swap-service-title">Hardware Development</h3>
+              <p class="swap-service-desc">Custom IoT prototype engineering, schematic capture, multi-layer KiCAD PCB fabrication, microcontroller firmware & MQTT telemetry.</p>
+              <div class="swap-feature-pills">
+                <span><i class="fa-solid fa-check"></i> ESP32 & STM32</span>
+                <span><i class="fa-solid fa-check"></i> Multi-layer PCB</span>
+                <span><i class="fa-solid fa-check"></i> Smart Sensors</span>
+              </div>
+              <div class="swap-card-footer">
+                <a href="services/electronics.html" class="swap-explore-btn" style="background: linear-gradient(135deg, #059669, #10b981);">
+                  Explore Hardware Track <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button type="button" class="swap-next-mini-btn" onclick="swapToNextService()" title="Swap to Next Service">
+                  Swap <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Japanese Language N5–N3 -->
+          <div class="swap-service-card stack-2" data-index="2" data-color="#c084fc">
+            <div class="swap-card-inner">
+              <div class="swap-card-top">
+                <span class="swap-track-badge" style="color:#c084fc; border-color:rgba(192,132,252,0.4);"><i class="fa-solid fa-torii-gate"></i> TRACK 03 // JAPANESE</span>
+                <span class="swap-tag-highlight">JLPT N5–N3</span>
+              </div>
+              <div class="swap-icon-container" style="background: radial-gradient(circle, rgba(192,132,252,0.25) 0%, rgba(124,58,237,0.06) 70%); border-color: rgba(192,132,252,0.4);">
+                <i class="fa-solid fa-language" style="color: #c084fc;"></i>
+              </div>
+              <h3 class="swap-service-title">Japanese Language (N5–N3)</h3>
+              <p class="swap-service-desc">Certified JLPT immersion training with Kanji mastery, business conversational Japanese, and recruitment placement in Japan.</p>
+              <div class="swap-feature-pills">
+                <span><i class="fa-solid fa-check"></i> JLPT N5 / N4 / N3</span>
+                <span><i class="fa-solid fa-check"></i> Business Kaiwa</span>
+                <span><i class="fa-solid fa-check"></i> Tokyo Career Track</span>
+              </div>
+              <div class="swap-card-footer">
+                <a href="services/japanese.html" class="swap-explore-btn" style="background: linear-gradient(135deg, #7c3aed, #c084fc);">
+                  Explore Japanese Track <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button type="button" class="swap-next-mini-btn" onclick="swapToNextService()" title="Swap to Next Service">
+                  Swap <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Digital Branding & ATS Resumes -->
+          <div class="swap-service-card" data-index="3" data-color="#fb7185">
+            <div class="swap-card-inner">
+              <div class="swap-card-top">
+                <span class="swap-track-badge" style="color:#fb7185; border-color:rgba(251,113,133,0.4);"><i class="fa-solid fa-id-badge"></i> TRACK 04 // BRANDING</span>
+                <span class="swap-tag-highlight">ATS & Profiles</span>
+              </div>
+              <div class="swap-icon-container" style="background: radial-gradient(circle, rgba(251,113,133,0.25) 0%, rgba(225,29,72,0.06) 70%); border-color: rgba(251,113,133,0.4);">
+                <i class="fa-solid fa-address-card" style="color: #fb7185;"></i>
+              </div>
+              <h3 class="swap-service-title">Digital Branding</h3>
+              <p class="swap-service-desc">100% ATS-friendly technical resume creation, LinkedIn profile optimization, GitHub curation, and portfolio brand packaging.</p>
+              <div class="swap-feature-pills">
+                <span><i class="fa-solid fa-check"></i> 90+ ATS Score Resumes</span>
+                <span><i class="fa-solid fa-check"></i> LinkedIn Optimization</span>
+                <span><i class="fa-solid fa-check"></i> Portfolio Websites</span>
+              </div>
+              <div class="swap-card-footer">
+                <a href="services/branding.html" class="swap-explore-btn" style="background: linear-gradient(135deg, #e11d48, #fb7185);">
+                  Explore Branding Track <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button type="button" class="swap-next-mini-btn" onclick="swapToNextService()" title="Swap to Next Service">
+                  Swap <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Placement Guidance -->
+          <div class="swap-service-card" data-index="4" data-color="#f59e0b">
+            <div class="swap-card-inner">
+              <div class="swap-card-top">
+                <span class="swap-track-badge" style="color:#fbbf24; border-color:rgba(245,158,11,0.4);"><i class="fa-solid fa-briefcase"></i> TRACK 05 // PLACEMENT</span>
+                <span class="swap-tag-highlight">Mock Drills & HR</span>
+              </div>
+              <div class="swap-icon-container" style="background: radial-gradient(circle, rgba(245,158,11,0.25) 0%, rgba(217,119,6,0.06) 70%); border-color: rgba(245,158,11,0.4);">
+                <i class="fa-solid fa-user-tie" style="color: #fbbf24;"></i>
+              </div>
+              <h3 class="swap-service-title">Placement Guidance</h3>
+              <p class="swap-service-desc">1-on-1 technical mock interviews, Data Structures & Algorithms coding drills, system design, STAR behavioral coaching & referrals.</p>
+              <div class="swap-feature-pills">
+                <span><i class="fa-solid fa-check"></i> Live Mock Interviews</span>
+                <span><i class="fa-solid fa-check"></i> DSA Problem Solving</span>
+                <span><i class="fa-solid fa-check"></i> MNC Hiring Network</span>
+              </div>
+              <div class="swap-card-footer">
+                <a href="services/placement.html" class="swap-explore-btn" style="background: linear-gradient(135deg, #d97706, #fbbf24);">
+                  Explore Placement Track <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button type="button" class="swap-next-mini-btn" onclick="swapToNextService()" title="Swap to Next Service">
+                  Swap <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Internship Program -->
+          <div class="swap-service-card" data-index="5" data-color="#60a5fa">
+            <div class="swap-card-inner">
+              <div class="swap-card-top">
+                <span class="swap-track-badge" style="color:#60a5fa; border-color:rgba(96,165,250,0.4);"><i class="fa-solid fa-award"></i> TRACK 06 // INTERNSHIP</span>
+                <span class="swap-tag-highlight">Certified & Verified</span>
+              </div>
+              <div class="swap-icon-container" style="background: radial-gradient(circle, rgba(96,165,250,0.25) 0%, rgba(37,99,235,0.06) 70%); border-color: rgba(96,165,250,0.4);">
+                <i class="fa-solid fa-award" style="color: #60a5fa;"></i>
+              </div>
+              <h3 class="swap-service-title">Internship Program</h3>
+              <p class="swap-service-desc">Practical project experience across Software, AI, Electronics, and Marketing with mentor guidance and verified certificates.</p>
+              <div class="swap-feature-pills">
+                <span><i class="fa-solid fa-check"></i> Live Production Work</span>
+                <span><i class="fa-solid fa-check"></i> Letter of Recommendation</span>
+                <span><i class="fa-solid fa-check"></i> QR Verified Certificate</span>
+              </div>
+              <div class="swap-card-footer">
+                <a href="internships.html" class="swap-explore-btn" style="background: linear-gradient(135deg, #2563eb, #60a5fa);">
+                  Explore Internships <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button type="button" class="swap-next-mini-btn" onclick="swapToNextService()" title="Swap to Next Service">
+                  Swap <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swap Navigation & Dot Bar -->
+        <div class="swap-controls-bar">
+          <button type="button" class="swap-nav-arrow prev" onclick="swapToPrevService()" aria-label="Previous Service">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          
+          <div class="swap-dots-indicator" id="swapDotsContainer">
+            <span class="swap-dot active" onclick="jumpToService(0)"></span>
+            <span class="swap-dot" onclick="jumpToService(1)"></span>
+            <span class="swap-dot" onclick="jumpToService(2)"></span>
+            <span class="swap-dot" onclick="jumpToService(3)"></span>
+            <span class="swap-dot" onclick="jumpToService(4)"></span>
+            <span class="swap-dot" onclick="jumpToService(5)"></span>
+          </div>
+
+          <button type="button" class="swap-nav-arrow next" onclick="swapToNextService()" aria-label="Next Service">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="swap-hint-text">
+          <i class="fa-solid fa-hand-pointer"></i> Swipe or tap arrows to swap services
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. About Section with Leadership Team -->
+  <section id="about" style="background: var(--bg-secondary);">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">About Kiyo Tak</span>
+        <h2 class="section-title">Bridging Theory & Industry Excellence</h2>
+        <p class="section-desc">
+          Kiyo Tak is a service-based technology company offering end-to-end software development, hardware development, Japanese language training (N5–N3), poster design, ATS-friendly resume creation, LinkedIn handling, placement preparation, programming languages, and cybersecurity/ethical hacking — combining intensive teaching with hands-on tools.
+        </p>
+      </div>
+
+      <!-- Leadership Team — Exact Order: CEO, CMO, CIO, CHRO with Uniform Small Photos -->
+      <div style="margin-top: 30px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h3 style="font-size: 1.6rem; font-weight: 800;">Mentorship & Leadership Team</h3>
+          <p style="color: var(--text-secondary); font-size: 0.92rem;">Experienced engineers, language specialists, and career architects.</p>
+        </div>
+
+        <div class="team-grid">
+          <!-- 1. CEO: K G Akash -->
+          <div class="team-card">
+            <div class="team-avatar-wrapper">
+              <div class="team-avatar">
+                <img src="assets/images/team/ceo-akash.png" alt="K G Akash - CEO" onerror="this.onerror=null; this.src='assets/images/logo.png'">
+              </div>
+            </div>
+            <h4 class="team-name">K G Akash</h4>
+            <div class="team-role ceo">CEO of Kiyo Tak</div>
+            <p class="team-bio">
+              Overall vision, growth strategy, industry partnerships, and technology innovation direction.
+            </p>
+          </div>
+
+          <!-- 2. CMO: Mohamed Ashfak Ali A -->
+          <div class="team-card">
+            <div class="team-avatar-wrapper">
+              <div class="team-avatar">
+                <img src="assets/images/team/cmo-ashfak.png" alt="Mohamed Ashfak Ali A - CMO" onerror="this.onerror=null; this.src='assets/images/logo.png'">
+              </div>
+            </div>
+            <h4 class="team-name">Mohamed Ashfak Ali A</h4>
+            <div class="team-role cmo">CMO – Marketing</div>
+            <p class="team-bio">
+              Digital marketing, branding strategy, SEO campaigns, and corporate student relations.
+            </p>
+          </div>
+
+          <!-- 3. CIO: Kiran Kumar M -->
+          <div class="team-card">
+            <div class="team-avatar-wrapper">
+              <div class="team-avatar">
+                <img src="assets/images/team/cio-kiran.png" alt="Kiran Kumar M - CIO" onerror="this.onerror=null; this.src='assets/images/logo.png'">
+              </div>
+            </div>
+            <h4 class="team-name">Kiran Kumar M</h4>
+            <div class="team-role cio">CIO – Software & AI</div>
+            <p class="team-bio">
+              Full-stack software architectures, cloud deployment, artificial intelligence, and mobile apps.
+            </p>
+          </div>
+
+          <!-- 4. CHRO: Kamalesh C -->
+          <div class="team-card">
+            <div class="team-avatar-wrapper">
+              <div class="team-avatar">
+                <img src="assets/images/team/chro-kamalesh.png" alt="Kamalesh C - CHRO" onerror="this.onerror=null; this.src='assets/images/logo.png'">
+              </div>
+            </div>
+            <h4 class="team-name">Kamalesh C</h4>
+            <div class="team-role chro">CHRO – Electronics</div>
+            <p class="team-bio">
+              IoT embedded hardware, PCB design, microcontroller firmware, and talent mentorship.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Services Section — 6 Dedicated Boxes -->
+  <section id="services">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Our 6 Core Divisions</span>
+        <h2 class="section-title">Specialized Service Tracks</h2>
+        <p class="section-desc">
+          Click any card to open its dedicated individual page with overview, curriculum, technologies, process, and application options.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- 1. Software Development -->
+        <a href="services/software-development.html" class="service-card" style="text-decoration:none; color:inherit;">
+          <div class="service-icon-box icon-software"><i class="fa-solid fa-code"></i></div>
+          <h3 class="service-title">1. Software Development</h3>
+          <p class="service-desc">Production-grade full-stack web applications, mobile apps, database systems, secure REST/GraphQL APIs, and AI integrations.</p>
+          <div class="service-tags">
+            <span class="service-tag">React / Next.js</span>
+            <span class="service-tag">Node.js</span>
+            <span class="service-tag">Python</span>
+            <span class="service-tag">Cloud</span>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-link">View Full Page <i class="fa-solid fa-arrow-right"></i></span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Web & Mobile</span>
+          </div>
+        </a>
+
+        <!-- 2. Hardware Development -->
+        <a href="services/electronics.html" class="service-card" style="text-decoration:none; color:inherit;">
+          <div class="service-icon-box icon-hardware"><i class="fa-solid fa-microchip"></i></div>
+          <h3 class="service-title">2. Hardware Development</h3>
+          <p class="service-desc">Custom IoT solutions, schematic capture, multi-layer PCB design, microcontroller firmware (ESP32/STM32/Arduino), and automation.</p>
+          <div class="service-tags">
+            <span class="service-tag">ESP32</span>
+            <span class="service-tag">KiCAD PCB</span>
+            <span class="service-tag">Embedded C</span>
+            <span class="service-tag">IoT MQTT</span>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-link">View Full Page <i class="fa-solid fa-arrow-right"></i></span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">IoT & Circuits</span>
+          </div>
+        </a>
+
+        <!-- 3. Japanese Language Training -->
+        <a href="services/japanese.html" class="service-card" style="text-decoration:none; color:inherit;">
+          <div class="service-icon-box icon-japanese"><i class="fa-solid fa-torii-gate"></i></div>
+          <h3 class="service-title">3. Japanese Language (N5–N3)</h3>
+          <p class="service-desc">Certified JLPT N5, N4, and N3 training with Kanji mastery, business conversational Japanese, and recruitment placement in Japan.</p>
+          <div class="service-tags">
+            <span class="service-tag">JLPT N5</span>
+            <span class="service-tag">JLPT N4</span>
+            <span class="service-tag">JLPT N3</span>
+            <span class="service-tag">Tokyo Careers</span>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-link">View Full Page <i class="fa-solid fa-arrow-right"></i></span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Language Mastery</span>
+          </div>
+        </a>
+
+        <!-- 4. Digital Branding -->
+        <a href="services/branding.html" class="service-card" style="text-decoration:none; color:inherit;">
+          <div class="service-icon-box icon-branding"><i class="fa-solid fa-id-badge"></i></div>
+          <h3 class="service-title">4. Digital Branding</h3>
+          <p class="service-desc">100% ATS-friendly technical resume creation, LinkedIn profile handling, GitHub curation, portfolio websites, and creative posters.</p>
+          <div class="service-tags">
+            <span class="service-tag">ATS Resumes</span>
+            <span class="service-tag">LinkedIn SEO</span>
+            <span class="service-tag">GitHub Polish</span>
+            <span class="service-tag">Portfolios</span>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-link">View Full Page <i class="fa-solid fa-arrow-right"></i></span>
+            <span style="font-size:0.8rem; color:var(--brand-lavender); font-weight:700;">Includes Tools</span>
+          </div>
+        </a>
+
+        <!-- 5. Placement Guidance -->
+        <a href="services/placement.html" class="service-card" style="text-decoration:none; color:inherit;">
+          <div class="service-icon-box icon-placement"><i class="fa-solid fa-briefcase"></i></div>
+          <h3 class="service-title">5. Placement Guidance</h3>
+          <p class="service-desc">1-on-1 technical mock interviews, Data Structures & Algorithms drills, system design sessions, STAR HR behavioral prep, and referrals.</p>
+          <div class="service-tags">
+            <span class="service-tag">Mock Interviews</span>
+            <span class="service-tag">DSA Patterns</span>
+            <span class="service-tag">STAR HR Method</span>
+            <span class="service-tag">Referrals</span>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-link">View Full Page <i class="fa-solid fa-arrow-right"></i></span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Interview Coaching</span>
+          </div>
+        </a>
+
+        <!-- 6. Internship Program -->
+        <a href="internships.html" class="service-card" style="text-decoration:none; color:inherit; border-color:rgba(234,179,8,0.3);">
+          <div class="service-icon-box" style="background:rgba(234,179,8,0.15); color:var(--brand-gold);"><i class="fa-solid fa-award"></i></div>
+          <h3 class="service-title">6. Internship Program</h3>
+          <p class="service-desc">Practical project experience across Software, AI, Electronics, and Marketing with mentor guidance and verified certificates.</p>
+          <div class="service-tags">
+            <span class="service-tag">1–6 Months</span>
+            <span class="service-tag">Live Projects</span>
+            <span class="service-tag">Verified Certificate</span>
+            <span class="service-tag">LOR</span>
+          </div>
+          <div class="service-card-footer">
+            <span class="service-link">View Full Page <i class="fa-solid fa-arrow-right"></i></span>
+            <span style="font-size:0.8rem; color:var(--brand-gold); font-weight:700;">With Certificate</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. One-on-One Mentorship / Application Form -->
+  <section id="mentorship" class="mentorship-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">1-on-1 Mentorship & Project Intake</span>
+        <h2 class="section-title">Apply for Mentorship or Services</h2>
+        <p class="section-desc">
+          Your inquiry is directly routed to <strong>kiyotakhtofficial@gmail.com</strong> for swift processing.
+        </p>
+      </div>
+
+      <div class="mentorship-box">
+        <form id="publicApplicationForm" onsubmit="handlePublicApplicationSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="appName"><i class="fa-solid fa-user"></i> Full Name *</label>
+              <input type="text" id="appName" class="form-control" required placeholder="e.g. Kiran Kumar">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="appPhone"><i class="fa-solid fa-phone"></i> Phone Number *</label>
+              <input type="tel" id="appPhone" class="form-control" required placeholder="e.g. 9943587707">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="appLocation"><i class="fa-solid fa-location-dot"></i> Location / City *</label>
+              <input type="text" id="appLocation" class="form-control" required placeholder="e.g. Chennai, India">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="appEmail"><i class="fa-solid fa-envelope"></i> Email Address *</label>
+              <input type="email" id="appEmail" class="form-control" required placeholder="e.g. kiran@example.com">
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="appCourse"><i class="fa-solid fa-cubes"></i> Select Service Track *</label>
+              <select id="appCourse" class="form-control" required>
+                <option value="Software Development">Software Development (Full-Stack & Cloud)</option>
+                <option value="Hardware Development">Hardware Development (IoT & PCB Design)</option>
+                <option value="Japanese Language Training">Japanese Language Training (JLPT N5/N4/N3)</option>
+                <option value="Digital Branding">Digital Branding (ATS Resumes, LinkedIn, GitHub)</option>
+                <option value="Placement Guidance">Placement Guidance (Mock Interviews & Referrals)</option>
+                <option value="Internship Program">Internship Program (Certified Practical Projects)</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="appMessage"><i class="fa-solid fa-comment-dots"></i> Goals / Specific Requirements</label>
+              <textarea id="appMessage" rows="3" class="form-control" placeholder="Share your background, college year, or what you want to learn/build..."></textarea>
+            </div>
+          </div>
+
+          <div style="margin-top: 28px; text-align: center;">
+            <button type="submit" class="btn btn-gold" style="padding: 14px 44px; font-size: 1.05rem;" id="btnAppSubmit">
+              <i class="fa-solid fa-paper-plane"></i> Submit Application to Kiyo Tak
+            </button>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 10px;">
+              <i class="fa-solid fa-shield-halved"></i> Automatically dispatched to <strong>kiyotakhtofficial@gmail.com</strong>.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Reviews & Google-Style Rating Section -->
+  <section id="reviews" style="background: var(--bg-secondary);">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Student & Client Satisfaction</span>
+        <h2 class="section-title">Verified Reviews & Ratings</h2>
+        <p class="section-desc">
+          Only verified, administrator-approved reviews appear below.
+        </p>
+      </div>
+
+      <!-- Google-Style Rating Block -->
+      <div class="ratings-summary-card">
+        <div class="rating-score-box">
+          <div class="rating-score-num" id="googleAvgScore">4.9</div>
+          <div class="stars-row" id="googleStarsRow">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);" id="googleTotalReviewsCount">Based on Verified Student Reviews</p>
+        </div>
+
+        <div class="rating-bars">
+          <div class="bar-row">
+            <span>5 <i class="fa-solid fa-star" style="color:var(--brand-gold); font-size:0.75rem;"></i></span>
+            <div class="bar-track"><div class="bar-fill" id="bar5" style="width: 90%;"></div></div>
+            <span id="pct5">90%</span>
+          </div>
+          <div class="bar-row">
+            <span>4 <i class="fa-solid fa-star" style="color:var(--brand-gold); font-size:0.75rem;"></i></span>
+            <div class="bar-track"><div class="bar-fill" id="bar4" style="width: 8%;"></div></div>
+            <span id="pct4">8%</span>
+          </div>
+          <div class="bar-row">
+            <span>3 <i class="fa-solid fa-star" style="color:var(--brand-gold); font-size:0.75rem;"></i></span>
+            <div class="bar-track"><div class="bar-fill" id="bar3" style="width: 2%;"></div></div>
+            <span id="pct3">2%</span>
+          </div>
+          <div class="bar-row">
+            <span>2 <i class="fa-solid fa-star" style="color:var(--brand-gold); font-size:0.75rem;"></i></span>
+            <div class="bar-track"><div class="bar-fill" id="bar2" style="width: 0%;"></div></div>
+            <span id="pct2">0%</span>
+          </div>
+          <div class="bar-row">
+            <span>1 <i class="fa-solid fa-star" style="color:var(--brand-gold); font-size:0.75rem;"></i></span>
+            <div class="bar-track"><div class="bar-fill" id="bar1" style="width: 0%;"></div></div>
+            <span id="pct1">0%</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+          <button class="btn btn-primary" onclick="openSubmitReviewModal()" style="width:100%;">
+            <i class="fa-solid fa-pen"></i> Leave a Rating
+          </button>
+          
+          <!-- "Review us on Google" button -->
+          <a href="https://search.google.com/local/writereview?placeid=ChIJplaceholder" target="_blank" class="btn btn-outline" style="width:100%; font-size:0.85rem;" id="googleReviewBtn">
+            <i class="fa-brands fa-google" style="color:#EA4335;"></i> Review us on Google
+          </a>
+        </div>
+      </div>
+
+      <!-- Approved Testimonial Cards List -->
+      <div class="testimonials-grid" id="publicReviewsContainer">
+        <!-- Rendered dynamically from backend -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Get in Touch Section -->
+  <section id="contact">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Get in Touch</span>
+        <h2 class="section-title">Connect with Kiyo Tak</h2>
+        <p class="section-desc">Reach out directly via email, phone, WhatsApp, or Instagram.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <!-- Email -->
+          <a href="mailto:kiyotakhtofficial@gmail.com" class="contact-card-item">
+            <div class="contact-icon c-email"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Official Email</div>
+              <div style="font-size:1.05rem; font-weight:700; color:var(--text-primary);">kiyotakhtofficial@gmail.com</div>
+            </div>
+          </a>
+
+          <!-- Phone -->
+          <a href="tel:9943587707" class="contact-card-item">
+            <div class="contact-icon c-phone"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Phone / Direct Call</div>
+              <div style="font-size:1.15rem; font-weight:700; color:var(--text-primary);">+91 9943587707</div>
+            </div>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/919943587707?text=Hi%20Kiyo%20Tak%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="contact-card-item">
+            <div class="contact-icon c-whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">WhatsApp Support</div>
+              <div style="font-size:1.1rem; font-weight:700; color:#25D366;">9943587707 (Active 24/7)</div>
+            </div>
+          </a>
+
+          <!-- Instagram with exact QR link -->
+          <a href="https://www.instagram.com/kiyo__tak?utm_source=qr&stkn=NTJiZzBiY3BtejV3" target="_blank" class="contact-card-item">
+            <div class="contact-icon c-instagram"><i class="fa-brands fa-instagram"></i></div>
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Official Instagram</div>
+              <div style="font-size:1.05rem; font-weight:700; color:#FB7185;">@kiyo__tak</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Quick Form -->
+        <div style="background: var(--bg-card); padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--bg-card-border);">
+          <h3 style="font-size: 1.3rem; margin-bottom: 18px; font-weight:700;"><i class="fa-solid fa-paper-plane" style="color:var(--brand-gold);"></i> Quick Inquiry</h3>
+          <form onsubmit="handleQuickContactSubmit(event)">
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label">Your Name</label>
+              <input type="text" id="qcName" class="form-control" required placeholder="Your name">
+            </div>
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label">Email or Phone</label>
+              <input type="text" id="qcContact" class="form-control" required placeholder="Where we can reach you">
+            </div>
+            <div class="form-group" style="margin-bottom:18px;">
+              <label class="form-label">Message</label>
+              <textarea id="qcMsg" rows="3" class="form-control" required placeholder="How can Kiyo Tak assist you?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="assets/images/logo.png" alt="Kiyo Tak" style="width: 44px; height: 44px; border-radius:50%;">
+          <span style="font-size: 1.4rem; font-weight: 800; color: #FFF;">Kiyo Tak</span>
+        </div>
+        <p>
+          "Learn · Build · Advance"<br>
+          Service-based technology training & development company dedicated to software engineering, IoT hardware, Japanese language mastery, and career branding.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title">6 Core Services</h4>
+        <ul class="footer-links">
+          <li><a href="services/software-development.html">Software Development</a></li>
+          <li><a href="services/electronics.html">Hardware Development</a></li>
+          <li><a href="services/japanese.html">Japanese (N5–N3)</a></li>
+          <li><a href="services/branding.html">Digital Branding</a></li>
+          <li><a href="services/placement.html">Placement Guidance</a></li>
+          <li><a href="internships.html">Internship Program</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Portal & Admin</h4>
+        <ul class="footer-links">
+          <li><a href="dashboard.html">Student Dashboard (My Certificates)</a></li>
+          <li><a href="javascript:void(0)" onclick="openAuthModal('login')">Student Login / Register</a></li>
+          <li><a href="admin-login.html" style="color:var(--brand-lavender); font-weight:700;"><i class="fa-solid fa-terminal"></i> Admin Console Login</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Quick Links & Policies</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="openPublicPolicyModal('privacy')">Privacy Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openPublicPolicyModal('terms')">Terms and Conditions</a></li>
+          <li><a href="javascript:void(0)" onclick="openPublicPolicyModal('refund')">Refund Policy (20% Not Refunded)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Kiyo Tak. All Rights Reserved.</div>
+      <div>Official Email: <a href="mailto:kiyotakhtofficial@gmail.com" style="color:var(--brand-gold);">kiyotakhtofficial@gmail.com</a> | Phone: +91 9943587707</div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919943587707?text=Hi%20Kiyo%20Tak%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="floating-whatsapp" title="Chat directly with Kiyo Tak on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <div class="whatsapp-badge">1</div>
+  </a>
+
+  <!-- ==========================================
+       MODALS: AUTH, REVIEWS, POLICIES
+       ========================================== -->
+
+  <!-- Public Auth Modal (Login & Register with Confirm Password) -->
+  <div id="publicAuthModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <!-- Login View -->
+      <div id="authLoginView">
+        <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:18px; text-align:center; color:var(--brand-gold);">
+          Student & Public Login
+        </h3>
+        <form onsubmit="handlePublicLoginSubmit(event)">
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Email Address *</label>
+            <input type="email" id="pubLoginEmail" class="form-control" required placeholder="your.email@example.com">
+          </div>
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label">Password *</label>
+            <input type="password" id="pubLoginPassword" class="form-control" required placeholder="••••••••">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-bottom:12px;">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Login to Dashboard
+          </button>
+        </form>
+
+        <div style="text-align:center; margin:14px 0; color:var(--text-muted); font-size:0.85rem;">or continue with</div>
+
+        <!-- Continue with Google -->
+        <button onclick="handlePublicGoogleSignIn()" class="btn btn-outline" style="width:100%; margin-bottom:16px;">
+          <i class="fa-brands fa-google" style="color:#EA4335;"></i> Continue with Google
+        </button>
+
+        <div style="text-align:center; font-size:0.88rem; color:var(--text-secondary);">
+          Don't have an account? <a href="javascript:void(0)" onclick="toggleAuthMode('register')" style="color:var(--brand-gold); font-weight:700;">Register here</a>
+        </div>
+      </div>
+
+      <!-- Register View (Name, Phone, Location, Email, Password, Confirm password) -->
+      <div id="authRegisterView" style="display:none;">
+        <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:18px; text-align:center; color:var(--brand-gold);">
+          Create Student Account
+        </h3>
+        <form onsubmit="handlePublicRegisterSubmit(event)">
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="regName" class="form-control" required placeholder="e.g. Arunachalam V">
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Phone Number *</label>
+            <input type="tel" id="regPhone" class="form-control" required placeholder="e.g. 9943587707">
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Location / City *</label>
+            <input type="text" id="regLocation" class="form-control" required placeholder="e.g. Chennai">
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Email Address *</label>
+            <input type="email" id="regEmail" class="form-control" required placeholder="your.email@example.com">
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Password *</label>
+            <input type="password" id="regPassword" class="form-control" required placeholder="••••••••">
+          </div>
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label">Confirm Password *</label>
+            <input type="password" id="regConfirmPassword" class="form-control" required placeholder="••••••••">
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width:100%; margin-bottom:12px;">
+            <i class="fa-solid fa-user-plus"></i> Register & Enter Dashboard
+          </button>
+        </form>
+
+        <div style="text-align:center; font-size:0.88rem; color:var(--text-secondary);">
+          Already have an account? <a href="javascript:void(0)" onclick="toggleAuthMode('login')" style="color:var(--brand-blue-light); font-weight:700;">Login here</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Submit Review Modal -->
+  <div id="submitReviewModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeSubmitReviewModal()"><i class="fa-solid fa-xmark"></i></button>
+      <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:16px; color:var(--brand-gold);">
+        <i class="fa-solid fa-star"></i> Submit a Review for Kiyo Tak
+      </h3>
+      <form onsubmit="handlePublicReviewSubmit(event)">
+        <div class="form-group" style="margin-bottom:12px;">
+          <label class="form-label">Your Name *</label>
+          <input type="text" id="revPubName" class="form-control" required placeholder="e.g. Deepika P">
+        </div>
+        <div class="form-group" style="margin-bottom:12px;">
+          <label class="form-label">Course / Division Completed</label>
+          <input type="text" id="revPubCourse" class="form-control" placeholder="e.g. Japanese Language N5 / IoT Systems">
+        </div>
+        <div class="form-group" style="margin-bottom:12px;">
+          <label class="form-label">Star Rating *</label>
+          <select id="revPubRating" class="form-control">
+            <option value="5">⭐⭐⭐⭐⭐ (5 Stars - Outstanding)</option>
+            <option value="4">⭐⭐⭐⭐ (4 Stars - Very Good)</option>
+            <option value="3">⭐⭐⭐ (3 Stars - Good)</option>
+            <option value="2">⭐⭐ (2 Stars)</option>
+            <option value="1">⭐ (1 Star)</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label">Your Review & Feedback *</label>
+          <textarea id="revPubComment" rows="4" class="form-control" required placeholder="Share your experience..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;">
+          Submit Review for Verification
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Policy Modals -->
+  <div id="policyModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closePolicyModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div id="policyModalContent"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/canvas-animation.js"></script>
+  <script src="assets/js/public-app.js"></script>
+</body>
+</html>
